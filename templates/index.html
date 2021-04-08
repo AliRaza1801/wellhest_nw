@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>wellhest | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="{{ url_for('static',filename='js/script.js')}}"></script>
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/lightslider.css')}}">
+  <script type="text/javascript" src="{{url_for('static',filename='js/lightslider.js')}}"></script>
+  <script>
+    $(document).ready(function () {
+      if (window.location.href.indexOf('#loginModal') != -1) {
+        $('#loginModal').modal('show');
+      }
+    });
+
+
+    $(window).on('scroll', () => {
+      var pos = $('#StickyNav').position();
+
+      if (($(window).scrollTop() >= pos.top)) {
+        $('.navigation').addClass('Navdarkred');
+
+      }
+      else {
+        $('.navigation').removeClass('Navdarkred');
+      }
+    });
+
+    const Fitness = () => {
+      document.getElementById('beauty').style.display = 'none';
+      document.getElementById('fitness').style.display = 'inline';
+      document.getElementById('homeServices').style.display = 'none';
+
+      document.getElementById('fitnessLink').style.borderBottom = '2px solid ghostwhite';
+      
+      document.getElementById('beautyLink').style.borderBottom = 'none';
+      document.getElementById('servicesLink').style.borderBottom = 'none';
+
+
+
+    }
+    const Beauty = () => {
+      document.getElementById('beauty').style.display = 'inline';
+      document.getElementById('fitness').style.display = 'none';
+      document.getElementById('homeServices').style.display = 'none';
+      document.getElementById('beautyLink').style.setProperty("border-bottom", "2px solid ghostwhite", "important");
+     //document.getElementById('beautyLink').style.borderBottom = '2px solid ghostwhite';
+      document.getElementById('fitnessLink').style.borderBottom = 'none';
+      document.getElementById('servicesLink').style.borderBottom = 'none';
+
+
+
+
+    }
+    const HomeServices = () => {
+      document.getElementById('homeServices').style.display = 'inline';
+      document.getElementById('fitness').style.display = 'none';
+
+      document.getElementById('beauty').style.display = 'none';
+      document.getElementById('servicesLink').style.borderBottom = '2px solid ghostwhite';
+      document.getElementById('beautyLink').style.borderBottom = 'none';
+      document.getElementById('fitnessLink').style.borderBottom = 'none';
+
+
+    }
+
+
+
+  </script>
+</head>
+
+<body>
+  {% include 'components/flash.html' %}
+  <header class="mainHeader">
+    <div class="header">
+      <nav class="navigation">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <div class="mt-sm-0 mt-2">
+              <a href="/" class="navbar-logo pl-md-5 ">wellhest</a>
+          </div>
+          </div>
+          <div class="col-6">
+            
+              <div class="navbar-right pr-md-5">
+                <div class="float-left ml-md-0 ml-4 mt-2">
+                {% if current_user.is_authenticated %}
+                <a class="mr-md-5 ml-sm-0 ml-5" id="loginSignup" href="logout">Logout</a>
+                {% else %}
+                <a  class="mr-md-5 ml-sm-0 ml-2" id="loginSignup" href="#" data-toggle="modal" data-target="#loginModal"><i
+                    class="fa fa-user mr-2" aria-hidden="true"></i>Login/Signup</a>
+                {% endif %}
+              </div >
+                <div class="float-left ml-md-0 ml-4 mt-2">
+                  <a class="ml-md-0 ml-3 p-2 px-3" id="forBusiness" href="business">For Business</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+     
+      
+    
+      <div class="video-container">
+        <video autoplay loop muted id="video-bg">
+          {% if links %}
+          <source src={{links.video1}}>
+          {% endif %}
+        </video>
+      </div>
+    </div>
+    <div id="typedText" class="container">
+      <div class="text-center">
+        <div class="w-100 text-white">
+          <h1>
+            <span class="typewrite" data-period="2000"
+              data-type='[ "Be Brave", "Be Bold", "Be Confident", "Be Yourself", "Be Free", "Be Colorful" ]'>
+            </span>
+            <span></span>
+          </h1>
+          <p class="lead mb-0"> Discover and book beauty & wellness professionals near you</p>
+          <div id="searchContainer" class="container mt-4">
+            <button type="button" class="leftDivServices" data-toggle="modal" data-target="#leftModal">
+              <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;<span>Book your services</span>
+            </button>
+            <button type="button" class="rightDivLocation" data-toggle="modal" data-target="#RightModal">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;<span>Where?</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <section class="menuNav">
+        <div class="container">
+          <ul class="text-center">
+            <li><span style="border-bottom:2px solid ghostwhite ;" id="beautyLink" onClick="Beauty()" >Beauty</span>
+            </li>
+            <li><span onclick="Fitness()" id="fitnessLink">Fitness</span></li>
+            <li><span id="servicesLink">Salon at Home</span></li>
+            <!-- <li><span onClick="HomeServices()" id="servicesLink">Home Service</span></li> -->
+
+          </ul>
+        </div>
+      </section>
+    </div>
+    <form action="{{ url_for('search')}}">
+      <!--Left Modal-->
+      <div class="modal" id="leftModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <input id="searchTB" type="text" placeholder="What are you looking for?" name="location" />
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger">Search</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--Right Modal-->
+      <div class="modal" id="RightModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+              <input id="locationTB" type="text" placeholder="Where?" name="service" />
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              Current Location
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <span style="font-size: 12px;text-align: left;">LOOKING FOR SERVICES ELSEWHERE?</span>
+              <button type="submit" class="btn btn-danger">Search</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </header>
+  <!--Login Modal-->
+  {% include 'components/login_modal.html' %}
+  <!--/Login Modal-->
+
+  <div id="StickyNav" class="container">
+    <hr>
+  </div>
+  <!--Beauty Section-->
+  {% if links %}
+  <section id="beauty" class="mt-5">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span>Hair Cut & Care</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox ">
+            <span >Face</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox ">
+            <span >Waxing & Threading</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Packages</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox  ">
+            <span >Spa/Massages</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox ">
+            <span >Treatments</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-1 borderBox ">
+            <span >Wedding/Bridal makeup</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-1 borderBox">
+            <span >Manicure and Pedicure</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+  <!---Fitness-->
+  <section style="display: none;" id="fitness" class="mt-5">
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-6 mb-4 ">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Gym</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Yoga Centre</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Fitness Studio</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Dance Studio</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Zumba Centres</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mb-4">
+          <div class="text-center py-lg-2 py-md-2 py-sm-2  py-3 borderBox">
+            <span >Mha & Kickboxing</span>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+  </section>
+
+  <!--Home Services-->
+  <section style="display: none;" id="homeServices" class="mt-5">
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4 ">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+          <div class="text-center p-4 borderBox">
+            <span >Home Services</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+  <!--Recommended-->
+  <section class="mt-5">
+    <div class="container mt-5">
+      <div class="item">
+        <ul class="content-slider">
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+          <li>
+            <img src={{links.img3}} class="img-fluid">
+            
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!--Our Partners-->
+  <section>
+    <div class="py-5">
+      <h3 class="text-center">Our Partners</h3>
+    </div>
+    <div class="container">
+      <div class="item">
+        <ul class="content-slider">
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(1).png" class="img-fluid">
+
+
+          </li>
+
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(2).png" class="img-fluid">
+
+
+          </li>
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(3).png" class="img-fluid">
+
+
+          </li>
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!.png" class="img-fluid">
+
+
+          </li>
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(2).png" class="img-fluid">
+
+
+          </li>
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!.png" class="img-fluid">
+
+
+          </li>
+          <li>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(2).png" class="img-fluid">
+
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!--Gallery-->
+  <section>
+    <div class="py-5">
+      <h3 class="text-center">Gallery</h3>
+    </div>
+    <div class="container">
+      <div class="row shadow-lg p-md-3 p-1  bg-white rounded">
+        <div class="col-lg-4 col-md-4 col-6">
+          
+          <div id="slideshow1" class="slideshow">
+
+              <img  src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(18).png" class="img-fluid w-100 h-100 ">
+     
+    
+              <img  src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(15).png" class="img-fluid w-100 h-100  ">
+        
+              <img  src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(17).png" class="img-fluid w-100 h-100 ">
+       
+         </div>
+       
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 ">
+          
+
+          
+          <div id="slideshow2"class="slideshow">
+
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(19).png " class="img-fluid w-100 h-100  ">
+         
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(20).png" class="img-fluid w-100 h-100  ">
+       
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(21).png" class="img-fluid w-100 h-100 ">
+ 
+         </div>
+      
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 ">
+          
+          <div id="slideshow3"class="slideshow">
+        
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(22).png " class="img-fluid w-100 h-100 ">
+          
+         
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(23).png" class="img-fluid w-100 h-100 ">
+           
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(26).png" class="img-fluid w-100 h-100 ">
+          
+         </div>
+        
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mt-md-2 mt-0">
+          
+          <div id="slideshow4"class="slideshow">
+         
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(27).png " class="img-fluid w-100 h-100 ">
+           
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(28).png" class="img-fluid w-100 h-100 ">
+            
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(29).png" class="img-fluid w-100 h-100 ">
+           
+           </div>
+        
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mt-md-2 mt-0">
+          
+            
+          <div id="slideshow5"class="slideshow">
+          
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(30).png " class="img-fluid w-100 h-100 ">
+            
+           
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(31).png" class="img-fluid w-100 h-100 ">
+         
+         
+              <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(32).png" class="img-fluid w-100 h-100 ">
+         
+         </div>
+        
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 mt-md-2 mt-0">
+          
+            <div id="slideshow6"class="slideshow">
+            
+                <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(33).png " class="img-fluid w-100 h-100 ">
+        
+    
+                <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(34).png" class="img-fluid w-100 h-100 ">
+          
+    
+                <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/gallary/Untitled+design+(35).png" class="img-fluid w-100 h-100 ">
+    
+            </div>
+         
+        </div>
+
+
+      </div>
+    </div>
+
+  </section>
+  
+  <!--About-->
+  <section>
+    <div class="py-5">
+      <h3 class="text-center">About Us</h3>
+    </div>
+      <div class="container">
+        <div class="row ">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-12 d-flex justify-content-center mb-md-0 mb-5">
+            <div class="card aboutAvatar" >
+              <img class="card-img-top about-image" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/about-us/1.standard.png" alt="Standard">
+              <div class="card-body about-body">
+                <h5 class="text-center">Standardization</h5>
+                <p class="card-text centered-text">We have set standards for every salon we tie up and bring the best trained professionals who will serve you using high quality and hygiene accessories. </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-12 d-flex justify-content-center mb-md-0 mb-5">
+            <div class="card aboutAvatar" >
+              <img class="card-img-top about-image" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/about-us/1.affordabilty.png" alt="Affordability">
+              <div class="card-body about-body">
+                <h5 class="text-center">Affordability</h5>
+                <p class="card-text centered-text">Choose quality service of various range with special offers and packages. We bring you with the most cost effective services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-12 d-flex justify-content-center mb-md-0 mb-5">
+            <div class="card aboutAvatar" >
+              <img class="card-img-top about-image" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/about-us/1.TECH.png" alt="Technology">
+              <div class="card-body about-body">
+                <h5 class="text-center">Technology</h5>
+                <p class="card-text centered-text">Using technology to deliver you the best in class service providing facilities to choose the right service at right place for ypurself by browsing through the wellhest app.</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--    Application Download via Phone no. Section-->
+    <section class="appContainer">
+      <div class="container">
+        <div class="row">
+<!--          <div  class="col-md-6 col-xs-12">-->
+<!--            <div class="textAppCont-inside">-->
+<!--              <div style="padding:20px;background-color: beige;">-->
+<!--                <h6>wellhest App . IOS . Android</h6>-->
+<!--              </div>-->
+<!--              <div style="padding: 20px;">-->
+<!--                <h5>Download our app to book your next appointment anytime and anywhere</h5>-->
+<!--              </div>-->
+<!--              <div class="appDownloadContainer">-->
+<!--                <input type="text" placeholder="Your phone number"  />-->
+<!--                <button class="btn btn-danger">Download</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div  class="col-md-6 col-xs-12">-->
+<!--            <div>-->
+<!--              <img src={{links.img4}} class="img-fluid w-100 h-100" >-->
+<!--            </div>-->
+<!--          </div>-->
+          <div>
+            <img src={{ links.download_app }} class="img-fluid w-100 h-100" >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Application Download via Link Section -->
+
+  <section class="appContainer">
+    <div class="container ">
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/download-our-app/be+ready+to+experience.png" class="img-fluid w-100 h-100">
+          </div>
+        </div>
+        <!-- <div class="col-md-6 col-xs-12">
+          <div class="appDownloadLinkContainer-innerDiv">
+            <div class="appDownloadContainer">
+              <h6>wellhest App . IOS . Android</h6>
+            </div>
+            <div style="padding: 2rem">
+              <h5>Focus on your best. wellhest will care about the rest.</h5>
+            </div>
+            <div id="downloadBTNS" style="height: auto">
+              <div style="float: left;">
+                <button class="btn btn-danger">Download for IOS</button>
+              </div>
+              <div class="ml-md-3 ml-sm-0 ml-xs-0">
+                <button class="btn btn-danger">Download for Android</button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+  </section>
+
+  <!--Footer -->
+  <section class="footer p-4">
+    <div class="container-fluid">
+      <div class="row">
+        <div  class="col-md-9">
+
+          <div class="bottom-menu mb-md-0 mb-3">
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div  class="col-md-3">
+          <div class="socialIconsDiv mb-md-0 mb-3 ">
+            <a href="{{ social_links.facebook if social_links else '#' }}" class="fab fa-facebook-f"></a>
+            <a href="{{ social_links.instagram if social_links else '#' }}" class="fab fa-instagram"></a>
+            <a href="{{ social_links.twitter if social_links else '#' }}" class="fab fa-twitter"></a>
+            <a href="{{ social_links.pinterest if social_links else '#' }}" class="fab fa-pinterest"></a>
+            <a href="{{ social_links.youtube if social_links else '#' }}" class="fab fa-youtube"></a>
+          </div>
+        </div>
+      </div>
+      <hr style="background-color: #bdc3c7;">
+        <div class="row">
+          <div  class="col-md-6">
+            <div class="bottom-logo">
+              <h4 ><strong>wellhest</strong></h4>
+              <span  id="copyRight">©
+                <script>document.write(new Date().getFullYear()); </script> wellhest Inc. All rights reserved</span>
+            </div>
+
+          </div>
+
+          <div  class="col-md-6">
+            <!-- <div id="downloadText">
+              <span style="color: white;">Download the app</span>
+            </div> -->
+            <div class="app-download-icon text-md-right text-center">
+
+              <a href="#"><img style="border: 1px solid #bdc3c7 ;border-radius: 5px;"class="img-fluid mb-sm-0 mb-3" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/Download-App-Icon/ANDROID.png" width="150" height="55"/></a>
+              <a href="#"><img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/Download-App-Icon/IOS.png"class="img-fluid" width="150" height="55" /></a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </section>
+  {% endif %}
+</body>
+
+</html>
+<script>
+  $("#slideshow1 > img:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow1 > img:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow1');
+}, 3000);
+
+$("#slideshow2 > img:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow2 > img:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow2');
+}, 3000);
+$("#slideshow3 > img:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow3 > img:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow3');
+}, 3000);
+
+$("#slideshow4 > img:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow4 > img:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow4');
+}, 3000);
+
+$("#slideshow5 > img:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow5 > img:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow5');
+}, 3000);
+
+$("#slideshow6 > img:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow6 > img:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow6');
+}, 3000);
+</script>

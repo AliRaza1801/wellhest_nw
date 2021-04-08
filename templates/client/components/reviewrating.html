@@ -1,0 +1,88 @@
+<form method="post" enctype="multipart/form-data" action="{{ url_for('ratingnreview')}}">
+    <div class="mt-2">
+        <div>
+        <h6>Star Rating</h6>
+         </div>
+        <div class="container ml-4 mb-4" style="width:100%">
+         <p class="stars">
+             <span class="pan">
+                 <a class="star-1" value='1' name="star1">1</a>
+                 <a class="star-2" value='2' name="star2">2</a>
+                 <a class="star-3" value='3' name="star3">3</a>
+                 <a class="star-4" value='4' name="star4">4</a>
+                 <a class="star-5" value='5' name="star5">5</a>
+             </span>
+           </p>
+             <textarea name="rating" class="form-control two-liner" placeholder="rating"></textarea>
+         </div>
+        <div class="container ml-4 mb-4">
+             <textarea name="review" class="form-control two-liner" placeholder="Write a two line review for our business"></textarea>                                                    
+        </div>
+        <div class="col-18">
+            {% if current_user.is_authenticated %}
+                    {% if 2==2 %}
+                    <button type="submit" class="btn btn-success">Write a review</a>
+                    {% else %}
+                    <a href="/booking/{{ center.id }}" class="btn btn-success disabled">Write a review</a>
+                    {% endif %}
+            {% else %}
+            <a id="loginSignup" href="#" class="btn btn-sm btn-success" data-toggle="modal"
+            data-target="#loginModal">Write a review</a>
+            {% endif %}
+        </div>
+    </div>
+</form>
+<!--End of Review and rating-->
+          <style>
+                .stars input {
+                    position: absolute;
+                    left: -999999px;
+                }
+
+                .stars a {
+                    display: inline-block;
+                    padding-right:4px;
+                    text-decoration: none;
+                    margin:0;
+                }
+
+                .stars a:after {
+                    position: relative;
+                    font-size: 18px;
+                    font-family: 'FontAwesome', serif;
+                    display: block;
+                    content: "\f005";
+                    color: #9e9e9e;
+                }
+
+
+                .pan {
+                font-size: 0; /* trick to remove inline-element's margin */
+                }
+
+                .stars a:hover ~ a:after{
+                color: #9e9e9e !important;
+                }
+                .pan.active a.active ~ a:after{
+                color: #9e9e9e;
+                }
+
+                .pan:hover a:after{
+                color:blue !important;
+                }
+
+                .pan.active a:after,
+                .stars a.active:after{
+                color:blue;
+                }
+
+          </style>
+          <script>
+                $('.stars a').on('click', function(){
+                $('.stars .pan, .stars a').removeClass('active');
+
+                $(this).addClass('active');
+                $('.stars .pan').addClass('active');
+                });
+
+          </script>

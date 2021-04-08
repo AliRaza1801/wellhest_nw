@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+*{margin:0;padding: 0;box-sizing: border-box;}
+html{
+  font-size: 100%;
+}
+header{
+  height:6rem;
+}
+.navigation{
+    background-color:#b33939;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    position: absolute;
+    top:0;
+    width:100%;
+    z-index:1;
+    box-sizing: border-box;
+    transition: .5s;
+  }
+  .navbar-logoBusiness{
+    padding-left:10%;
+    font-family:Arial;
+    font-size:2rem;
+    font-weight:bold;
+    float: left;
+    color:#fff; 
+}
+  .navbar-logoBusiness:hover{
+    color: #ecf0f1;
+    text-decoration: none;
+  }
+  .navbar-right {
+    float: right;
+    padding-right: 10%;
+}
+
+.navbar-right a{
+  text-decoration:none;
+  padding:1rem;
+  color: #fff;
+  font-weight:500;
+  font-size: 1rem;
+}
+
+.vendorName h3{
+  font-size:1.7rem ;
+}
+  .card-cascade{
+    width: 250px;
+    height: 250px;
+    transition: transform .4s;
+    
+    }
+    .card-cascade:hover{
+      transform: scale(1.1);
+    }
+    
+.card-cascade .view-cascade{
+
+border-radius: 5px;
+
+}
+.imgDivCard{    
+    position: relative;
+}
+
+
+.counter{
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    font-size: 15px;
+    color:white;
+    background-color: red;
+    padding: 10px;
+    border-bottom-left-radius: 30px;
+  
+}
+
+ .btnColor{
+  background-color:#b33939;
+  color: white;
+}
+.btnColor:hover{
+  color: bisque;
+}
+
+/* Alert.html CSS */
+.tableAlert tr td{
+  padding: 20px;
+}
+/* Alert.html CSS */
+
+
+
+.errorMsg{
+  color: red;
+  font-size: 12px;
+}
+.card{
+  margin: 0 auto; 
+  float: none;
+ 
+}
+/* Tables CSS */
+thead{
+  background-color: #b33939;
+}
+
+.two-liner{
+  width: 95%;
+  height: 7rem !important;
+  resize: none;
+}
+
+/* side bar */
+
+.icon-bar {
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	z-index: 99;
+}
+
+.icon-bar a {
+	text-decoration: none;
+	width:12rem;
+	background: #b33939;
+	color: #fff;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: .5rem;
+	font-size: 1rem;
+	transform: translateX(-9rem);
+	-webkit-transform: translateX(-9rem);
+	-ms-transform: translateX(-9rem);
+	transition: all 0.5s linear;
+	-webkit-transition: all 0.5s linear;
+	-ms-transition: all 0.5s linear;
+}
+.support{
+  background-color: #b33939;
+  height: 3rem;
+}
+.icon-bar a i {
+  padding-left: 2rem;
+  padding-right: .5rem;
+
+	/* animation: letszoom 3s linear alternate-reverse infinite; */
+}
+.icon-bar a:hover {
+	transform: translateX(0);
+	-webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+}
+
+
+#clock {
+  color: black;
+  font-size: 1.2rem;
+  
+  font-weight: bolder;
+  letter-spacing: .2rem;
+}
+#date{
+
+  color: black;
+  font-size: .8rem;
+  letter-spacing: .2rem;
+  font-weight: bolder;
+}
+.serviceSpan{
+    color: gray;
+    font-weight: lighter;
+    font-size: small;
+}

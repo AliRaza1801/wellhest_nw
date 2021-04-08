@@ -1,0 +1,72 @@
+<form method="post" action="/services/update">
+  {{ service_form.csrf_token }}
+  <div class="row " >
+    <input type="hidden" name="gender" value="{{ gender }}">
+    {% if cat %}
+      <input type="hidden" name="id" value="{{ cat.id }}">
+    {% endif %}
+    <div class="col-md-2 col-xs-12">
+      <div class="md-form catgm">
+<!--        <input type="text" id="cat" name="category" class="form-control" value="{{ cat.category if cat else '' }}">-->
+<!--        <label for="cat">Category</label>-->
+          <span class="serviceSpan">Category</span>
+        {% if client.category == 'beauty' %}
+          <select name="category" class="serviceCategory" width="100%">
+            <option value="Hair Cut & Care"  {{ 'selected' if cat.category=='Hair Cut & Care' }}>Hair Cut & Care</option>
+            <option value="Face"  {{ 'selected' if cat.category=='Face' }}>Face</option>
+            <option value="Waxing & Threading"  {{ 'selected' if cat.category=='Waxing & Threading' }}>Waxing & Threading</option>
+            <option value="Manicure and Pedicure"  {{ 'selected' if cat.category=='Manicure and Pedicure' }}>Manicure and Pedicure</option>
+            <option value="Spa/Massages"  {{ 'selected' if cat.category=='Spa/Massages' }}>Spa/Massages</option>
+            <option value="Treatments"  {{ 'selected' if cat.category=='Treatments' }}>Treatments</option>
+            <option value="Wedding/Bridal makeup"  {{ 'selected' if cat.category=='Wedding/Bridal makeup' }}>Wedding/Bridal makeup</option>
+            <option value="Packages"  {{ 'selected' if cat.category=='Packages' }}>Packages</option>
+          </select>
+        {% elif client.category == 'fitness' %}
+        <select name="category" class="serviceCategory" width="100%">
+            <option value="Gym"  {{ 'selected' if cat.category=='Gym' }}>Gym</option>
+            <option value="Yoga Centre"  {{ 'selected' if cat.category=='Yoga Centre' }}>Yoga Centre</option>
+            <option value="Fitness Studio"  {{ 'selected' if cat.category=='Fitness Studio' }}>Fitness Studio</option>
+            <option value="Dance Studio"  {{ 'selected' if cat.category=='Dance Studio' }}>Dance Studio</option>
+            <option value="Zumba Centres"  {{ 'selected' if cat.category=='Zumba Centres' }}>Zumba Centres</option>
+            <option value="Mha & Kickboxing"  {{ 'selected' if cat.category=='Mha & Kickboxing' }}>Mha & Kickboxing</option>
+          </select>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-2 col-xs-12" style="padding-top: 0.5rem;">
+      <div class="md-form">
+        <input type="text" id="scat" name="subcategory" class="form-control" value="{{ cat.subcategory if cat.subcategory else '' }}">
+        <label for="scat">Sub Category</label>
+      </div>
+    </div>
+
+    
+    <div class="col-md-2 col-xs-12" style="padding-top: 0.5rem;">
+      <div class="md-form">
+        <input type="text" id="service" name="service" class="form-control" value="{{ cat.service if cat.service else '' }}">
+        <label for="scat">Service</label>
+      </div>
+    </div>
+
+
+    <div class="col-md-2 col-xs-12" style="padding-top: 0.5rem;">
+      <div class="md-form">
+        <input type="text" id="price" name="prices" class="form-control" value="{{ cat.prices if cat.prices else '' }}">
+        <label for="price">Prices</label>
+      </div>
+    </div>
+
+
+    <div class="col-md-2 col-xs-12" >
+      <div class="md-form">
+          {% if cat %}
+          <input type="submit" id="updateButton" name="_update" class="btn btn-primary" value="Update">
+          {% else %}
+          <input type="submit" id="createButton" name="_create" class="btn btn-primary" value="Create">
+          {% endif %}
+      </div>
+    </div>
+
+  </div>
+</form>

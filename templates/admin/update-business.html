@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block body %}
+<div class="container">
+    <form method="post">
+      {% for field in form %}
+        {% if field.type == 'CSRFTokenField' %}
+          {{ field }}
+        {% else %}
+        <div class="form-group">
+          <label for="{{ field.name }}">{{ field.label }}</label>
+          {% if field.type == 'TextAreaField'  %}
+           <textarea name="{{ field.name }}" class="form-control" id="{{ field.name }}" rows="3">{{ getattr(merchant, field.name) if getattr(merchant, field.name) else '' }}</textarea>
+          {% elif field.type == 'BooleanField' %}
+            <input name="{{ field.name }}" type="checkbox" class="form-check-input" id="{{ field.name }}" {{ 'checked' if  getattr(merchant, field.name) else '' }}>
+          {% else %}
+            <input name="{{ field.name }}" type="text" class="form-control" id="{{ field.name }}" value="{{ getattr(merchant, field.name) if getattr(merchant, field.name) else '' }}">
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endfor %}
+      <button type="submit" class="btn btn-primary mb-2">Update</button>
+    </form>
+</div>
+{% endblock %}

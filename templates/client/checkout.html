@@ -1,0 +1,205 @@
+<html>
+<head>
+    <title>wellhest | checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Material Design Bootstrap -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!--Select 2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Select2 JS-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+   
+
+    <!--External-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/checkout.css')}}">
+    <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" /> -->
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+ 
+    <!--DateDropper-->
+ 
+    <!-- <script src="https://cdn.datedropper.com/get/p47od89crevdy0pxvs8dnybth45ndxl6"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.js" integrity="sha512-ICqbZJ/UtEiZf92URbFOwnPEH0P5YrD/Cw3qHkR9NZVdQ1mZtHBoWJwQVeGmrU8TVsFbr2FNN2Q3VO1PKsv03g==" crossorigin="anonymous"></script>
+    
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datedropper/2.0/datedropper.css" integrity="sha512-mXK0YBNog3A7aM1y3y5iUT8B7S/HduFOTr4MNnJeukMzDsknSOG/Av7U6JN7BNOn4/DZZxYaIaNmscBfnQs6Aw==" crossorigin="anonymous" /> -->
+
+      <!-- <script src="{{ url_for('static',filename='js/datedropper.pro.min.js')}}"></script> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.js"></script>
+      <script src="{{ url_for('static',filename='js/checkout.js')}}"></script>
+</head>
+
+<body >
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header">
+                        <nav class="navigation">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-12 col-xs-12 ">
+                                    <div class="text-center">
+                                        <a class="navbar-logo" href="/">wellhest</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12 col-xs-12">
+                                    <div class="text-center mt-1">
+                                        <select class="text-center" id="cityList">
+                                            <option></option>
+                                            <option value="lko">Lucknow</option>
+                                            <option value="kan">Kanpur</option>
+                                            <option value="Gha">Ghaziabad</option>
+                                            <option value="Agra">Agra</option>
+                                            <option value="Var">Varanasi</option>
+                                            <option value="Bar">Bareilly</option>
+                                            <option value="Fai">Faizabad</option>
+                                            <option value="Jha">Jhansi</option>
+                                            <option value="Gor">Gorakhpur</option>
+                                            <option value="Noida">Noida</option>
+                                            <option value="Sul">Sultanpur</option>
+                                            <option value="Bijnor">Bijnor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <div class="text-center d-flex   mt-1">
+                                        <button type="button" class="LocalityBTN" data-toggle="modal"
+                                            data-target="#LocalityModal">
+                                            <i class="fa fa-location-arrow"
+                                                aria-hidden="true"></i>&nbsp;&nbsp;<span>Locality</span>
+                                        </button>
+                                        <button type="button" class="ServicesBTN" data-toggle="modal"
+                                            data-target="#ServiceModal">
+                                            <i class="fa fa-search"
+                                                aria-hidden="true"></i>&nbsp;&nbsp;<span>Services</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12 col-xs-12">
+                                    <div class="text-center">
+                                        <button class="btn btn-success btn-sm searchBtn">Search</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12 col-xs-12 navbar-right">
+                                    <div class="text-center">
+                                        <a id="loginSignup" href="{{ url_for('logout') }}">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--Body Sec-->
+    <section class="w-100  mainContainer">
+        <div class="container card containerDiv">
+            <div class="row">
+                <div class="col-12 py-3">
+                    <h4>{{ business.business_name }}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    {% include 'client/components/checkout_date_time_picker.html' %}
+                </div>
+                <div class="col-md-6 col-12 ">
+                    {% include 'client/components/checkout_booking.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    </body>
+    </html>
+    <script>
+        let d=new Date();
+        d.setMonth(d.getMonth() + 3); 
+        var datePicker = $('#datePick').datepicker({
+            
+            language: 'en',
+            inline:true,
+            minDate: new Date(),
+            maxDate: d,
+            onSelect: dateSelect
+           
+          
+        });
+
+        $("#cityList").select2({
+            width: '55%',
+            placeholder: 'Select City',
+            allowClear: 'true',
+    
+        })
+        $('#cityList').on('select2:open', function (e) {
+            $('.select2-dropdown').hide();
+            setTimeout(function () { $('.select2-dropdown').slideDown("slow", "easeInOutQuint"); }, 200);
+        });
+
+        $('.afternoon').hide()
+        $('.evening').hide()
+
+        //Update Datepicker Date
+        date = document.querySelector('input[name="date"]').value
+        if (date){
+            datePicker.data().datepicker.selectDate(new Date(date))
+        } else {
+            datePicker.data().datepicker.clear()
+        }
+        //Update Timepicker Time
+        time = document.querySelector('input[name="time"]').value
+        $('.SelectTime ul li').removeClass('selected');
+        $('.ApponintmentShifts ul li').removeClass('selectedShift');
+        $('.morning').hide()
+        $('.afternoon').hide()
+        $('.evening').hide()
+        if (time){
+            if (morningTimes.includes(time)){
+                $('#morningShift').addClass('selectedShift');
+                $('.morning').show()
+            }
+            if (afternoonTimes.includes(time)){
+                $('#afternoonShift').addClass('selectedShift');
+                $('.afternoon').show()
+            }
+            if (eveningTimes.includes(time)){
+                $('#eveningShift').addClass('selectedShift');
+                $('.evening').show()
+            }
+            $(`li:contains(${time})`).addClass('selected');
+        } else {
+            $('#morningShift').addClass('selectedShift');
+            $('.morning').show()
+        }
+
+    </script>

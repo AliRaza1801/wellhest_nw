@@ -1,0 +1,19 @@
+{% extends "vendor/reg_base.html" %}
+{% block title %} OTP Verify {% endblock %}
+{% block content %}
+<div class="container">
+<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Verify OTP</strong></h3>
+<form method="post">
+      <div class="md-form mb-5">
+        <input type="text" name="otp" id="Form-email1" class="form-control validate">
+        <label data-error="wrong" data-success="right" for="Form-email1">OTP</label>
+      </div>
+        {% if error %}
+            <span style="color: red;font-size: small;">{{ error }}</span>
+        {% endif %}
+      <div class="text-center mb-3">
+        <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Verify</button>
+      </div>
+    </form>
+</div>
+{% endblock %}

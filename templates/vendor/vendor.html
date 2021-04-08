@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor | Home</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/vendor.css')}}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+  <script>
+    timer = () => {
+      let time = new Date().toLocaleTimeString();
+      let date = new Date();
+      let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+      let curWeekDay = days[date.getDay()];
+      let curDay = date.getDate();
+      let curMonth = months[date.getMonth()];
+      let curYear = date.getFullYear();
+      let today = curWeekDay+", "+curDay+" "+curMonth+" "+curYear;
+      document.getElementById('clock').innerHTML =   time;
+      document.getElementById('date').innerHTML =   today;
+    
+    }
+    setInterval(timer, 1000)
+
+    $(document).ready(function () {
+      {% if form.errors %}
+      $('#passwordModal').modal('show');
+      {% endif %}
+    });
+
+  </script>
+</head>
+
+<body>
+  {% include 'components/flash.html' %}
+  {% include 'components/vendor_header.html' %}
+  
+  <!--Vender Section-->
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-between align-items-center">
+      
+      <div class="col-12 col-md-9">
+        <div class="w-100 text-md-left text-center ml-md-5 ml-0 vendorName">
+          <h3 class="font-weight-bolder">{{ client.business_name }}</h3>
+        </div>
+        
+      </div>
+
+      <div class="col-md-3 col-12">
+        <div class="text-md-right d-block justify-content-end  text-center mr-md-5 mr-0">
+          <div id="clock"></div>
+          <div id="date"></div>
+        </div>
+      
+      </div>
+      
+    </div>
+  </div>
+<!-- Support Side bar -->
+  <div class="icon-bar">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=wellhest@gmail.com" class='support'>
+      Chat Support<i class=" fa fa-comment"></i>
+    </a>
+    <a href="tel:+9506677024" class='support'>
+      Call Support<i class=" fa fa-phone-alt"></i>
+    </a>
+  </div>
+
+  <section>
+  
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 col-12 mb-3">
+          <!--Card-->
+         <div class="card card-cascade  mb-3">
+            <!--Card image-->
+            <div class="view view-cascade shadow">
+              <img src={{links.description}} class="img-fluid ">
+              <a href="description">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+          </div>
+          <!--/.Card-->
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12 mb-3">
+          <!--Card-->
+         <div class="card card-cascade  mb-3">
+            <!--Card image-->
+            <div class="view view-cascade shadow">
+              <img src={{links.services}} class="img-fluid ">
+              <a href="services">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+          </div>
+          <!--/.Card-->
+        </div>
+
+        <div class="col-lg-4 col-sm-6 col-12 mb-3">
+          <!--Card-->
+         <div class="card card-cascade  mb-3">
+            <!--Card image-->
+            <div class="view view-cascade shadow imgDivCard">
+              <img src={{links.notifi}} class="img-fluid ">
+
+              <span class="counter counter-lg">+{{ notifications }}</span>
+              <!--badge-->
+              <a href="booking">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+          </div>
+          <!--/.Card-->
+        </div>
+
+
+        <div class="col-lg-4 col-sm-6 col-12 mb-3">
+          <!--Card-->
+         <div class="card card-cascade  mb-3">
+            <!--Card image-->
+            <div class="view view-cascade shadow">
+              <img src={{links.history}} class="img-fluid ">
+              <a href="history">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+          </div>
+          <!--/.Card-->
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12 mb-3">
+          <!--Card-->
+         <div class="card card-cascade  mb-3">
+            <!--Card image-->
+            <div class="view view-cascade shadow">
+              <img src={{links.alert}} class="img-fluid ">
+              <a href="alert">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+          </div>
+          <!--/.Card-->
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12 mb-3">
+          <!--Card-->
+         <div class="card card-cascade  mb-3">
+            <!--Card image-->
+            <div class="view view-cascade shadow">
+              <img src={{links.finance}} class="img-fluid ">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+          </div>
+          <div class="row">
+            <div class="col-"></div>
+          </div>
+          <!--/.Card-->
+        </div>
+
+      </div>
+
+    </div>
+    
+     
+   
+  </section>
+  
+    <div class="w-100 text-md-right text-center position-fixed fixed-bottom">
+      <a href="#" data-toggle="modal" data-target="#passwordModal" class="btn btn-md btnColor rounded ">Change Password</a>
+    </div>
+    {% include 'components/password_change_modal.html' %}
+
+ 
+  <!-- <div class="container">
+    <div class="row w-100 d-flex justify-content-between">
+
+      <div class="col-md-6 col-xs-12 changePassbtn">
+        <a href="#" data-toggle="modal" data-target="#passwordModal" class="btn btnColor">Change Password</a>
+      </div>
+     
+      <div class=" col-md-6 col-xs-12 supportBtns ">
+        <a class="btn btnColor rounded-circle p-3 " href="https://mail.google.com/mail/?view=cm&fs=1&to=wellhest@gmail.com"><i class="fa fa-comment fa-2x"
+          aria-hidden="true"></i></a>
+        
+          <a class="btn btnColor rounded-circle p-3 " href="tel:+9506677024"><i class="fas fa-phone-alt fa-2x "></i></a>
+
+      </div>
+    </div>
+  
+  </div> -->
+  
+
+
+
+
+</body>
+
+</html>

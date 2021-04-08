@@ -1,0 +1,286 @@
+<html>
+<head>
+    <title>wellhest | Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Notification</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Select 2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!--External-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
+    
+</head>
+<script>
+
+</script>
+
+<body>
+    {% include 'components/login_modal.html' %}
+    <form>
+        <header>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header">
+                            <nav class="navigation">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-12 col-xs-12 ">
+                                        <div class="text-center">
+                                            <a class="navbar-logo" href="/">wellhest</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12 col-xs-12">
+                                        <div class="text-center mt-1">
+                                            <select class="text-center" id="cityList" name="city">
+                                                <option></option>
+                                                <option value="Lucknow" {{ 'selected' if city=="Lucknow" else '' }}>Lucknow</option>
+                                                <option value="Kanpur" {{ 'selected' if city=="Kanpur" else '' }}>Kanpur</option>
+                                                <option value="Ghaziabad" {{ 'selected' if city=="Ghaziabad" else '' }}>Ghaziabad</option>
+                                                <option value="Agra" {{ 'selected' if city=="Agra" else '' }}>Agra</option>
+                                                <option value="Varanasi" {{ 'selected' if city=="Varanasi" else '' }}>Varanasi</option>
+                                                <option value="Bareilly" {{ 'selected' if city=="Bareilly" else '' }}>Bareilly</option>
+                                                <option value="Faizabad" {{ 'selected' if city=="Faizabad" else '' }}>Faizabad</option>
+                                                <option value="Jhansi" {{ 'selected' if city=="Jhansi" else '' }}>Jhansi</option>
+                                                <option value="Gorakhpur" {{ 'selected' if city=="Gorakhpur" else '' }}>Gorakhpur</option>
+                                                <option value="Noida" {{ 'selected' if city=="Noida" else '' }}>Noida</option>
+                                                <option value="Sultanpur" {{ 'selected' if city=="Sultanpur" else '' }}>Sultanpur</option>
+                                                <option value="Bijnor" {{ 'selected' if city=="Bijnor" else '' }}>Bijnor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <div class="text-center d-flex   mt-1">
+                                            <button type="button" class="LocalityBTN" data-toggle="modal"
+                                                data-target="#LocalityModal">
+                                                <i class="fa fa-location-arrow"
+                                                    aria-hidden="true"></i>&nbsp;&nbsp;<span>Locality</span>
+                                            </button>
+                                            <button type="button" class="ServicesBTN" data-toggle="modal"
+                                                data-target="#ServiceModal">
+                                                <i class="fa fa-search"
+                                                    aria-hidden="true"></i>&nbsp;&nbsp;<span>Services</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!--Left Modal-->
+                                    <div class="modal" id="ServiceModal">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                              <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <input id="searchTB" type="text" placeholder="What are you looking for?" name="service" value="{{ service }}" />
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                              <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Right Modal-->
+                                    <div class="modal" id="LocalityModal">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                              <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <input id="locationTB" type="text" placeholder="Where?" name="location" value="{{ location }}" />
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                              <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    Current Location
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <span style="font-size: 12px;text-align: left;">LOOKING FOR SERVICES ELSEWHERE?</span>
+                                                    <button type="submit" class="btn btn-danger">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-12 col-xs-12">
+                                        <div class="text-center">
+                                            <button onclick="clearLocationFilter()" class="btn  btn-sm searchBtn waves-effect waves-light" style="background-color: darkred; color: white;">Clear</button>
+                                            <button class="btn  btn-sm searchBtn" style="color: white; background-color: darkred;">Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12 col-xs-12 navbar-right">
+                                        <div class="text-center ">
+                                        {% if current_user.is_authenticated %}
+                                            <div class="mt-2">
+                                            <a id="loginSignup" href="{{ url_for('logout') }}">Logout</a>
+                                            </div>
+                                        {% else %}
+                                            <div>
+                                            <a id="loginSignup" href="#" data-toggle="modal" data-target="#loginModal"><i
+                                                    id="userIcon" class="fa fa-user "
+                                                    aria-hidden="true"></i>Login/Signup</a>
+                                                </div>
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!---->
+        <div class="container mb-2 mt-3 py-md-5 py-2 card">
+            <section class="mt-1 ">
+                <div class="container py-md-5 py-2 card">
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Hair Cut & Care</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Face</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Waxing & Threading</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Manicure and Pedicure</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-md-0 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Spa/Massages</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-md-0 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Treatments</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-md-0 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Wedding/Bridal makeup</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 mb-md-0 mb-4">
+                        <div class="text-center py-2 borderBox">
+                            <span >Packages</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container ">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-3 col-12 ">
+                            {% include 'client/components/search_center_filters.html' %}
+                            
+                        </div>
+                        <!--Center-->
+                        <div style="padding: 0;margin: 0;"class="col-md-6 col-12 ">
+                            {% include 'client/components/search_center_card.html' %}
+                            
+                        </div>
+
+                        <!--right sec-->
+                        <div class="col-md-3 col-12">
+                            <div>
+                            {% include 'client/components/search_center_sort.html' %}
+                            </div>
+                            <div>
+                                <section class="card">
+                                    <div class="container">
+                                        <div class="row ">
+                                            <div class="col-12 py-3 rightBodyContainer">
+
+                                                    <h6 class="text-center">Why book through wellhest?</h6>
+
+
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="py-3">
+                                                    <span>XYZ</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+            </div>
+            <!--Footer -->
+            {% include 'client/components/footer.html' %}     
+        </form>   
+</body>
+
+</html>
+<script>
+    $(document).ready(() => {
+        $("#listSearch").on("keyup", () => {
+            var value = $(this).val().toLowerCase();
+            $("#cityList option").filter(() => {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    $("#cityList").select2({
+            width: '55%',
+            placeholder: 'Select City',
+            allowClear: 'true',
+    
+        })
+        $('#cityList').on('select2:open', function (e) {
+            $('.select2-dropdown').hide();
+            setTimeout(function () { $('.select2-dropdown').slideDown("slow", "easeInOutQuint"); }, 200);
+        });
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+    });
+
+    function clearLocationFilter(){
+        $('#cityList').val(null).trigger('change');
+        document.getElementById('searchTB').value = ''
+        document.getElementById('locationTB').value = ''
+    }
+</script>

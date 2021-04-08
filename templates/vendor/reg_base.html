@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!--Select 2-->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href=" {{ url_for('static',filename='css/business.css')}}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+  <link rel="stylesheet" href="../static/css/propeller.min.css">
+  <script src="../static/js/propeller.min.js"></script>
+
+  <script>
+
+    $(document).ready(function () {
+      if (window.location.href.indexOf('#loginModal') != -1) {
+        $('#loginModal').modal('show');
+      }
+    });
+
+    $(window).on('scroll', () => {
+      var pos = $('#stickyNavStartHere').position();
+      if ($(window).scrollTop() >= pos.top) {
+        $('.navigation').addClass('darkred');
+
+      }
+      else {
+        $('.navigation').removeClass('darkred');
+      }
+    });
+
+  </script>
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body>
+  {% include 'components/flash.html' %}
+  <header>
+    <div class="header">
+      <nav class="navigation">
+        <a href="/" class="navbar-logoBusiness">wellhest</a>
+        <div class="navbar-right">
+
+          <a href="#" data-toggle="modal" data-target="#loginModal"><i id="userIcon" class="fa fa-user "
+              aria-hidden="true"></i>Login</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  {% include 'components/login_modal.html' %}
+  {% block content %}{% endblock %}
+
+  {% if links %}
+  <!--Carousel Slider-->
+  <section>
+    <div class="py-5">
+      <h3 id="stickyNavStartHere" class="text-center">wellhest Experiences</h3>
+    </div>
+    <div class="container">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row p-2">
+              <div class=" col-3 col-md-3 ">
+                <img class="d-block w-100 " src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(1).png" alt="First slide">
+              </div>
+              <div class=" col-3 col-md-3 ">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(2).png" alt="First slide">
+              </div>
+              <div class=" col-3 col-md-3">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(3).png" alt="First slide">
+              </div>
+              <div class=" col-3 col-md-3">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!.png" alt="First slide">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row p-2">
+              <div class=" col-3 col-md-3">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!.png" alt="First slide">
+              </div>
+              <div class=" col-3 col-md-3">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(3).png" alt="First slide">
+              </div>
+              <div class=" col-3 col-md-3">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(2).png" alt="First slide">
+              </div>
+              <div class=" col-3 col-md-3">
+                <img class="d-block w-100" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/wellhest-experiences/You+Are+Nearly+There!+(1).png" alt="First slide">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+    </div>
+    </div>
+  </section>
+  <hr>
+  <!---Image and Some Punch line-->
+  <section>
+    <div class="container mt-5 ">
+      <div class="row">
+        <div class="col-12">
+          <img src="{{url_for('static',filename='img/wellhestFeat.jpeg')}}"class="img-fluid" alt="Image">
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <hr>
+  <!--Partner-->
+  <section>
+    <div class="mt-5">
+      <h3 class="text-center">Be a Partner with wellhest For Business Growth</h3>
+    </div>
+    <div class="container mt-5">
+      <div class="row ">
+        <div class="col-md-4 col-sm-12 partner-card">
+          <div class="gradient-border m-2">
+            <div class="card testimonial-card">
+              <!-- Avatar -->
+              <div class="avatar mx-auto white partner-image-wrap">
+                <img src={{links.self_service}} class="rounded-circle img-fluid partner-image" alt="woman avatar">
+              </div>
+
+              <!-- Content -->
+              <div class="card-body partner-card-body" style="color:black">
+                <!-- Name -->
+                <h6 class="card-title centered-text font-weight-bold">Client Self Service</h6>
+                <hr>
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> Even if it is after hours, wellhest is available to our clients.People can check your free slots and book their visit 24/7 from any place with free wellhest app.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 partner-card">
+          <div class="gradient-border m-2">
+            <div class="card testimonial-card">
+              <!-- Avatar -->
+              <div class="avatar mx-auto white partner-image-wrap">
+                <img src={{links.calender_manage}} class="rounded-circle img-fluid partner-image" alt="woman avatar">
+              </div>
+
+              <!-- Content -->
+              <div class="card-body partner-card-body" style="color:black">
+                <!-- Name -->
+                <h6 class="card-title centered-text font-weight-bold">Calender Management</h6>
+                <hr>
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> It takes a glance at your smartphone to know what the day holds for you. wellhest makes managing and modifying schedules for both individual calenders and whole business.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 partner-card">
+          <div class="gradient-border m-2">
+            <div class="card testimonial-card">
+              <!-- Avatar -->
+              <div class="avatar mx-auto white partner-image-wrap">
+                <img src={{links.booking_manage}} class="rounded-circle img-fluid partner-image" alt="woman avatar">
+              </div>
+
+              <!-- Content -->
+              <div class="card-body partner-card-body" style="color:black">
+                <!-- Name -->
+                <h6 class="card-title centered-text font-weight-bold">Client/Booking Management</h6>
+                <hr>
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> Know the details of every booking, every detail information like time of service, booking, No turn up, Appointment reminder, Accept/Reject the Service.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 partner-card">
+          <div class="gradient-border m-2">
+            <div class="card testimonial-card">
+              <!-- Avatar -->
+              <div class="avatar mx-auto white partner-image-wrap">
+                <img src={{links.loyalty_tools}} class="rounded-circle img-fluid partner-image" alt="woman avatar">
+              </div>
+
+              <!-- Content -->
+              <div class="card-body partner-card-body" style="color:black">
+                <!-- Name -->
+                <h6 class="card-title centered-text font-weight-bold">Marketing and Loyalty Tools</h6>
+                <hr>
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> Choose the right level of partnership with wellhest and get a stable client base, and potential customers, your business marketing is handled by experts at wellhest.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 partner-card">
+          <div class="gradient-border m-2">
+            <div class="card testimonial-card">
+              <!-- Avatar -->
+              <div class="avatar mx-auto white partner-image-wrap">
+                <img src={{links.pos}} class="rounded-circle img-fluid partner-image" alt="woman avatar">
+              </div>
+
+              <!-- Content -->
+              <div class="card-body partner-card-body" style="color:black">
+                <!-- Name -->
+                <h6 class="card-title centered-text font-weight-bold">Point of Sale</h6>
+                <hr>
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> Various mode of online payment and cash at delivery point to make check out faster and easier than ever. Introducing a cancellation policy to discourage no turn up.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 partner-card">
+          <div class="gradient-border m-2">
+            <div class="card testimonial-card">
+              <!-- Avatar -->
+              <div class="avatar mx-auto white partner-image-wrap">
+                <img src={{links.finance}} class="rounded-circle img-fluid partner-image" alt="woman avatar">
+              </div>
+
+              <!-- Content -->
+              <div class="card-body partner-card-body" style="color:black">
+                <!-- Name -->
+                <h6 class="card-title centered-text font-weight-bold">Business and Finance Management</h6>
+                <hr>
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> Manage your finance at a click. Get Notifications for week's business. Get report on sales just with a click as well as manage your staff and inventories.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--Footer-->
+  <section class="footer p-4">
+    <div class="container-fluid">
+      <div class="row">
+        <div  class="col-md-9">
+
+          <div class="bottom-menu mb-md-0 mb-3">
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div  class="col-md-3">
+          <div class="socialIconsDiv mb-3 mb-md-0 ">
+            <a href="{{ social_links.facebook if social_links else '#' }}" class="fab fa-facebook-f"></a>
+            <a href="{{ social_links.instagram if social_links else '#' }}" class="fab fa-instagram"></a>
+            <a href="{{ social_links.twitter if social_links else '#' }}" class="fab fa-twitter"></a>
+            <a href="{{ social_links.pinterest if social_links else '#' }}" class="fab fa-pinterest"></a>
+            <a href="{{ social_links.youtube if social_links else '#' }}" class="fab fa-youtube"></a>
+          </div>
+        </div>
+      </div>
+      <hr style="background-color: #bdc3c7;">
+        <div class="row">
+          <div  class="col-md-6">
+            <div class="bottom-logo">
+              <h4 ><strong>wellhest</strong></h4>
+              <span  id="copyRight">©
+                <script>document.write(new Date().getFullYear()); </script> wellhest Inc. All rights reserved</span>
+            </div>
+
+          </div>
+
+          <div  class="col-md-6">
+            <!-- <div id="downloadText">
+              <span style="color: white;">Download the app</span>
+            </div> -->
+            <div class="app-download-icon text-md-right text-center">
+
+              <a href="#"><img style="border: 1px solid #bdc3c7 ;border-radius: 5px;"class="img-fluid mb-sm-0 mb-3" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/Download-App-Icon/ANDROID.png" width="150" height="55"/></a>
+              <a href="#"><img src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/Download-App-Icon/IOS.png"class="img-fluid" width="150" height="55" /></a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </section>
+  {% endif %}
+</body>
+
+</html>

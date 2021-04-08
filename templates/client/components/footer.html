@@ -1,0 +1,169 @@
+<!--Footer -->
+<section class="footer p-4">
+      <div class="container-fluid">
+      <div class="row">
+        <div  class="col-md-9">
+
+          <div class="bottom-menu mb-md-0 mb-3">
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div  class="col-md-3">
+          <div class="socialIconsDiv mb-md-0 mb-3 ">
+            <a href="{{ social_links.facebook if social_links else '#' }}" class="fab fa-facebook-f"></a>
+            <a href="{{ social_links.instagram if social_links else '#' }}" class="fab fa-instagram"></a>
+            <a href="{{ social_links.twitter if social_links else '#' }}" class="fab fa-twitter"></a>
+            <a href="{{ social_links.pinterest if social_links else '#' }}" class="fab fa-pinterest"></a>
+            <a href="{{ social_links.youtube if social_links else '#' }}" class="fab fa-youtube"></a>
+          </div>
+        </div>
+      </div>
+      <hr style="background-color: #bdc3c7;">
+        <div class="row">
+            <div class="bottom-logo">
+              <h4 ><strong>wellhest</strong></h4>
+              <span  id="copyRight">©
+                <script>document.write(new Date().getFullYear()); </script> wellhest Inc. All rights reserved</span>
+            </div>
+            <div class="appdownload ">
+              <a href="#"><img style="position: inherit;" src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/Download-App-Icon/ANDROID.png" width="150" height="55"/></a>
+                 <a href="#" ><img style="position: inherit;"src="https://wellhest-general-data.s3.ap-south-1.amazonaws.com/picturess/Download-App-Icon/IOS.png" width="150" height="55" /></a>
+            </div>
+          </div>
+
+    </div>
+</section>
+    <style>
+      footer{
+  background-color: #b33939;
+}
+.footer{
+  background-color: #b33939;
+  height: auto;
+  margin-top: 30px;
+
+}
+
+.bottom-menu{
+  height: auto;
+  display: flex;
+  align-items: center;
+
+
+}
+.bottom-menu ul{
+  list-style-type:none ;
+}
+.bottom-menu ul li{
+  display: inline;
+  padding-right: 2rem;
+}
+.bottom-menu ul li a{
+ 
+  color: ghostwhite;
+  font-size: 15px;
+}
+.bottom-menu ul li a:hover{
+
+  color: #ee826f;
+  text-decoration: none;
+  
+}
+.bottom-logo{
+  color: white;
+}
+#copyRight{
+  color: white;
+}
+.appdownload{
+  text-align: center;
+  height: auto;
+  margin-top: -3.5%;
+  margin-left: 80.5%;
+
+}
+.appdownload a:hover{
+  opacity: 0.6;
+}
+.socialIconsDiv{
+
+  height: auto;
+  text-align: right;
+  
+}
+.socialIconsDiv .fab{
+  padding:15px;
+  border-radius: 50%;
+  border: 1px solid white;
+  color: white;
+  margin-left: 10px;
+  font-size: larger;
+}
+.socialIconsDiv .fab:hover{
+  background-color: #b33939;
+}
+
+.fa-facebook-f {
+  background: rgb(61, 77, 172);
+}
+
+.fa-instagram {
+  background: #e05a0c;
+}
+.fa-twitter {
+  background: #079ac7;
+}
+.fa-pinterest{
+  background: red;
+}
+@media only screen and (max-width: 600px) {
+  .bottom-menu ul li{
+  display: block;
+  text-align: center;
+  margin-left: 2rem;
+ 
+}
+.bottom-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  height: auto;
+}
+#copyRight{
+  margin-top: 3rem;
+  width: 100%;
+  text-align: center;
+}
+.bottom-logo{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}
+.socialIconsDiv{
+
+  height: 6rem;
+  text-align: center;
+  
+}
+#downloadText{
+  text-align: center;
+  margin-left: 0;
+}
+.appdownload{
+  text-align: center;
+  margin-left: 0;
+}
+ 
+}
+</style>

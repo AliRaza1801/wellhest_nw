@@ -1,0 +1,38 @@
+    <div class="col-md-9 col-12" style="padding-bottom: 50px;">
+        <div >
+            <span>{{ service.service }}</span>
+        </div>
+        <!-- <div class="paragraphDiv">
+            <p>
+                We’re taking extra precautions to keep you & our staff healthy!
+                Pricing will reflect upon state regulation and requirements, such as
+                gloves,
+                mask and the amount of time extended per service.
+            </p>
+        </div> -->
+
+
+    </div>
+    <div class="col-md-3 col-12">
+        <div class="text-md-center text-left" style="display: flex;">
+            <div style="flex: 1;">
+            <div style="padding-top: 10%;">
+                <span>&#8377;</span>
+                <span>{{ service.prices }}</span>
+                </div>
+            <!-- <span class="ml-1">(1h)</span> -->
+            </div>
+            <div style="flex: 1;">
+                {% if current_user.is_anonymous %}
+                    <a id="loginSignup" href="#" class="btn btn-sm btn-success" data-toggle="modal"
+                       data-target="#loginModal"><i style="color: white; font-size: 10;" class="fa fa-plus" aria-hidden="true"></i></a>
+                {% elif db.session.query(Cart).filter_by(user=current_user, service=service).all() %}
+                    <a href="/remove-from-cart/{{ service.id }}/{{ center.id }}" class="btn btn-sm btn-danger"><i style="color:white; font-size: 10;" class="fa fa-minus" aria-hidden="true"></i></a>
+                {% else %}
+                    <a href="/add-to-cart/{{ service.id }}/{{ center.id }}" class="btn btn-sm btn-success cartbtn"><i style="color: white; font-size: 10;" class="fa fa-plus" aria-hidden="true"></i></a>
+                {% endif %}
+                </div>
+        </div>
+        
+    </div>
+    

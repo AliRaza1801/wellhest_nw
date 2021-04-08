@@ -1,0 +1,122 @@
+{% extends "admin/base.html" %}
+{% block title %} Create Booking {% endblock %}
+{% block body %}
+<h1>{{ vendor.id }}</h1>
+<form method="post">
+    <table>
+        {{ form.csrf_token }}
+        <tr>
+            <td>Customer Name: </td>
+            <td><input name="customer_name"/></td>
+            <td>
+                <ul>
+                    {% for error in form.customer_name.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Customer Email: </td>
+            <td><input name="customer_email"/></td>
+            <td>
+                <ul>
+                    {% for error in form.customer_email.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Mobile Number: </td>
+            <td><input name="mobile_number"/></td>
+            <td>
+                <ul>
+                    {% for error in form.mobile_number.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Payment Mode: </td>
+            <td>
+                <select name="payment_mode">
+                    <option value="cash">Cash</option>
+                    <option value="online">Online</option>
+                    <option value="pending">Pending</option>
+                    <option value="failed">Failed</option>
+                </select>
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.payment_mode.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Amount: </td>
+            <td><input name="amount"/></td>
+            <td>
+                <ul>
+                    {% for error in form.amount.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>paid: </td>
+            <td><input name="paid" type="checkbox"/></td>
+            <td>
+                <ul>
+                    {% for error in form.paid.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Services: </td>
+            <td>
+                <select multiple name="services">
+                    {% for service in vendor.services %}
+                        <option value="{{ service.id }}">{{service.gender}} |{{service.category}} | {{service.subcategory}} | {{service.prices}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.services.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Booking From: </td>
+            <td>
+                <input id="dtpick1" name="booking_at"/>
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.booking_at.errors %}
+                        <li style="color:red;">{{error}}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Create Booking"/>
+</form>
+{% endblock %}
+
+{% block end_scripts %}
+<script>
+    $('#dtpick1').datetimepicker({
+            showOtherMonths: true
+        });
+</script>
+{% endblock %}

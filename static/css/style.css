@@ -1,0 +1,597 @@
+*{margin:0;padding: 0;box-sizing: border-box;}
+body{
+  background-color: ghostwhite;
+}
+.mainHeader{
+  height: 36rem;
+  /* z-index:-1; */
+  border:1px solid white;
+  background-color: black;
+  position: relative;
+}
+.navigation{
+  z-index:11;
+  padding-top:20px;
+  padding-bottom:20px;
+  position: absolute;
+  top:0;
+  width:100%;
+  /* z-index:999; */
+  box-sizing: border-box;
+  transition: .5s;
+}
+.navigation.Navdarkred{
+  background-color: #b33939;
+  position:fixed;
+ 
+}
+.navbar-right{
+  float: right;
+ 
+  
+}
+.navbar-right a{
+  text-decoration:none;
+ 
+  color: #fff;
+  font-weight:500;
+}
+
+.navbar-logo{
+  
+  font-family:Arial;
+  font-size:30px;
+  font-weight:bold;
+
+  color:#fff; 
+}
+.navbar-logo:hover{
+  color: #ecf0f1;
+  text-decoration: none;
+}
+.video-container {
+/* z-index:1; */
+width:100%;
+height:100%;
+overflow:hidden;
+position:absolute;
+opacity: 0.9;
+ filter: brightness(60%);
+top:0;
+left:0;
+right: 0;
+}
+
+#video-bg{
+  width:100%;
+  background-size: cover;
+  /* z-index:-1; */
+  position: absolute;
+ 
+}
+
+#forBusiness{
+  text-decoration: none;
+
+  border-radius: 20px;
+  background: ghostwhite;
+  color: black;
+  font-size: 12px;
+ 
+  font-weight: bold;
+
+}
+#forBusiness:hover{
+  background-color: #ecf0f1;
+}
+
+#loginSignup{
+  text-decoration: none;
+
+}
+#loginSignup:hover{
+  color:#ecf0f1; 
+}
+#typedText{
+  /* z-index: 10; */
+  position: absolute;
+  top: 30%;
+  bottom: 0%;
+  right: 0;
+  left:0;
+ 
+  
+
+}
+#searchContainer{
+ 
+  width: 60%;
+  height: 3.7rem;
+ 
+}
+.leftDivServices{
+ 
+  border: none;
+  border-right: 1px solid black;
+  height:3.7rem;
+  width:50%;
+  float: left;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.leftDivServices:focus{
+  outline: none;
+}
+.rightDivLocation{
+ border: none;
+  height:3.7rem;
+  width:50%;
+  float: right;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.rightDivLocation:focus{
+  outline: none;
+}
+.modal-header #searchTB{
+  width: 100%;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+
+}
+.modal-header #searchTB:focus {
+  outline: none;
+}
+.modal-header #locationTB{
+  width: 100%;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+
+}
+.modal-header #locationTB:focus {
+  outline: none;
+}
+.modal-header button:focus{
+  outline: none;
+}
+.menuNav{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+}
+.menuNav div ul{
+  list-style-type: none;
+  margin: 0;
+  padding-bottom: 12px;
+  text-align: center;
+  width: 100%;
+
+}
+.menuNav div ul li{
+  display: inline;
+  margin: 20px;
+
+}
+.menuNav div ul li span{
+ 
+  color:ghostwhite;
+
+  padding: 10px;
+ 
+}
+.menuNav div ul li span:hover{
+  color: #ee826f;
+  cursor: pointer;
+  
+}
+.borderBox{
+  border: 2px solid #b33939;
+  transition: 0.3s;
+}
+.borderBox:hover{
+  background-color: #b33939;
+  color: white;
+  cursor: pointer;
+}
+.appContainer{
+  margin-top: 150px;
+  position: static;
+  height: auto;
+}
+
+.textAppCont-inside{
+  margin: 30% 0 0 0;
+ 
+}
+.appDownloadContainer{
+  background-color: beige;
+  padding: 1rem;
+  
+}
+.appDownloadContainer input[type=text]{
+  background-color:beige ;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  width: 60%;
+  
+}
+
+.appDownloadContainer input[type=text]:focus{
+  outline: none;
+}
+.NextappContainer{
+  margin-top: 150px;
+}
+.appDownloadLinkContainer{
+  float:right;
+  width:50%;
+}
+.appDownloadLinkContainer-innerDiv{
+  margin-top: 30%;
+ 
+  
+}
+.footer{
+  background-color: #b33939;
+  height: auto;
+  margin-top: 30px;
+
+}
+
+
+.bottom-menu{
+  height: auto;
+  display: flex;
+  align-items: center;
+
+
+}
+.bottom-menu ul{
+  list-style-type:none ;
+}
+.bottom-menu ul li{
+  display: inline;
+  padding-right: 2rem;
+}
+.bottom-menu ul li a{
+ 
+  color: ghostwhite;
+  font-size: 15px;
+}
+.bottom-menu ul li a:hover{
+
+  color: #ee826f;
+  text-decoration: none;
+  
+}
+.bottom-logo{
+  color: white;
+}
+#copyRight{
+  color: white;
+}
+.app-download-icon{
+  text-align: center;
+  
+  height: auto;
+  margin-top: 1rem;
+
+}
+.app-download-icon a:hover{
+  opacity: 0.6;
+}
+.socialIconsDiv{
+
+  height: auto;
+  text-align: right;
+  
+}
+.socialIconsDiv .fab{
+  padding:15px;
+  border-radius: 50%;
+  border: 1px solid white;
+  color: white;
+  margin-left: 10px;
+  font-size: larger;
+}
+.socialIconsDiv .fab:hover{
+  background-color: #b33939;
+}
+
+.fa-facebook-f {
+  background: rgb(61, 77, 172);
+}
+
+.fa-instagram {
+  background: #e05a0c;
+}
+.fa-twitter {
+  background: #079ac7;
+}
+.fa-pinterest{
+  background: red;
+}
+.fa-youtube{
+  background: #e00b1d;
+}
+#downloadText{
+  text-align: center;
+  margin-left: 3rem;
+}
+.content-slider img{
+    border-radius: 10px;
+    
+}
+.slideshow {
+  position: relative;
+  width: 21rem;
+
+  height: 13rem;
+
+
+  position: relative;
+
+}
+
+.slideshow img {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+}
+
+.aboutAvatar{
+  width: 20rem;
+ 
+  transition: transform .4s;
+
+}
+.aboutAvatar:hover{
+  transform: scale(1.1);
+}
+
+.about-image{
+  height: 20rem;
+}
+
+.about-body{
+ height: 10rem;
+}
+
+.centered-text{
+  text-align: center;
+}
+@media only screen and (max-width:1200px){
+  .slideshow {
+    position: relative;
+    width: 18rem;
+  
+    height: 13rem;
+  
+    overflow: hidden;
+    position: relative;
+  
+   
+  }
+  
+  .slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media only screen and (max-width:1000px){
+  .slideshow {
+    position: relative;
+    width: 14rem;
+  
+    height: 13rem;
+  
+    overflow: hidden;
+    position: relative;
+  
+  }
+  
+  .slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media only screen and (max-width:465px){
+  .slideshow {
+    position: relative;
+    width: 12rem;
+  
+    height: 11rem;
+    margin-top: 2px;
+    overflow: hidden;
+    position: relative;
+  
+  }
+  
+  .slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+@media only screen and (max-width:395px){
+  .slideshow {
+    position: relative;
+    width: 10rem;
+    
+    height: 9rem;
+    margin-top: 5px;
+    overflow: hidden;
+    position: relative;
+  
+ 
+  }
+  
+  .slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+ 
+
+ 
+ .textAppCont-inside{
+   margin-top:0;
+   margin-bottom: 10%;
+ }
+ .appContainer{
+   margin-top: 3rem;
+   margin-left: 5%;
+ }
+.appDownloadLinkContainer-innerDiv{
+  margin-bottom: 20%;
+}
+.bottom-menu ul li{
+  display: block;
+  text-align: center;
+  margin-left: 2rem;
+ 
+}
+.bottom-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  height: auto;
+}
+#copyRight{
+  margin-top: 3rem;
+  width: 100%;
+  text-align: center;
+}
+.bottom-logo{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}
+.socialIconsDiv{
+
+  height: 6rem;
+  text-align: center;
+  
+}
+#downloadText{
+  text-align: center;
+  margin-left: 0;
+}
+.app-download-icon{
+  text-align: center;
+  margin-left: 0;
+}
+ 
+}
+ 
+
+@media only screen and (max-width:1010px){
+  header {
+    background: url('../img/banner1.jpg') black no-repeat center center scroll;
+  }
+  header .video-container {
+    display: none;
+  }
+  .menuNav div ul li{
+  
+    margin: 2vh;
+ 
+
+  }
+}
+@media only screen and (max-width:420px){
+  #beauty{
+    display: none;
+
+  }
+  #beautyLink{
+    border-bottom: transparent !important ;
+  }
+ 
+  
+  .menuNav div ul li span{
+    font-size: 13px;
+  
+  }
+  #searchContainer{
+    display: block;
+    width: 100%;
+    
+  }
+  #searchContainer .leftDivServices{
+    border: none;
+    width: 100%;
+    border-radius: 15px;
+    float: none;
+  }
+  #searchContainer .rightDivLocation{
+    margin-top: 5%;
+    border: none;
+    width: 100%;
+    border-radius: 15px;
+    float: none;
+ 
+  }
+  
+
+  
+}
+#downloadBTNS{
+  background-color: beige;
+  padding: 1rem;
+}
+
+
+.btnColor{
+  background-color: #b33939 !important;
+  color: white!important;
+}
+.btnColor:hover{
+  color: wheat !important;
+ 
+}
+.btn-outline-danger{
+  color: #b33939 !important;
+  background-color: transparent !important;
+  border: 2px solid #b33939 !important;
+}
+.md-form input[type="text"]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #b33939!important;
+  box-shadow: 0 1px 0 0 #b33939 !important;
+}
+.md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label{
+  color: #b33939 !important;
+}
+.md-form input[type="password"]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #b33939!important;
+  box-shadow: 0 1px 0 0 #b33939 !important;
+}
+.md-form input[type="password"]:not(.browser-default):focus:not([readonly])+label{
+  color: #b33939 !important;
+}

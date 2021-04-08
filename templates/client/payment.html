@@ -1,0 +1,38 @@
+
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+</head>
+<body>
+    <table>
+        <caption>{{ business.business_name }}</caption>
+        <thead>
+            <td>Service</td>
+            <td>Price</td>
+        </thead>
+        {% for cart in cart_items %}
+        <tr>
+            <td>{{ cart.service.service }}</td>
+            <td>{{ cart.service.prices }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>Total: {{ amount/100 }}</p>
+    <form action="{{ url_for('charge') }}" method="POST">
+        <script
+            src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="{{ razorpay_id }}"
+            data-amount="{{ amount }}"
+            data-name="Wellhest"
+            data-description="Purchase Description"
+            data-image="vk.jpg"
+            data-netbanking="true"
+            data-prefill.name="{{ current_user.name if current_user.name else ''}}"
+            data-prefill.email="{{ current_user.email if current_user.email else ''}}"
+            data-prefill.contact="{{ current_user.mobile_number if current_user.mobile_number else ''}}"
+            data-notes.business_id="{{ business.id }}">
+        </script>
+        <input type="hidden" name="business_id" value="{{ business.id }}">
+    </form>
+</body>
+</html>

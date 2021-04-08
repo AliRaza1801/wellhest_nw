@@ -1,0 +1,234 @@
+*{margin:0;padding: 0;box-sizing: border-box;}
+body{
+  background-color: ghostwhite;
+}
+header{
+  background-color: #b33939;
+}
+
+.header{
+    background-color:#b33939;
+   
+    height: auto;
+}
+  .navigation{
+    padding-top:20px;
+    padding-bottom:20px;
+    width:100%;
+  
+  }
+  
+  .navbar-logo{
+    
+    font-family:Arial;
+    font-size:30px;
+    font-weight:bold;
+
+    color:#fff; 
+  }
+  .navbar-logo:hover{
+    color: #ecf0f1;
+    text-decoration: none;
+  }
+  
+  .navbar-right a{
+
+    color: #fff;
+    font-weight:500;
+  }
+ 
+ 
+  #loginSignup:hover{
+    color:#ecf0f1; 
+    text-decoration: none;
+  }
+  #userIcon{
+    padding: 10px;
+  }
+  .CityBTN{
+      border: none;
+      height:5%;
+      float: left;
+     border-radius: 15px;
+  
+ 
+  }
+ 
+  .LocalityBTN{
+    border: none;
+    border-right: 1px solid black;
+    height:5%;
+    width:50%;
+    padding: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  .LocalityBTN:focus{
+    outline: none;
+  }
+  .ServicesBTN{
+    border: none;
+     height:5%;
+     padding: 5px;
+     width:50%;
+    
+     border-top-right-radius: 15px;
+     border-bottom-right-radius: 15px;
+   }
+   .ServicesBTN:focus{
+     outline: none;
+   }
+   .select2-results__options::-webkit-scrollbar {
+    width: 16px;
+    background-clip: padding-box;
+  }
+  .select2-results__options::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+    height: 8px;
+    background-clip: padding-box;
+    border-right: 10px solid rgba(0, 0, 0, 0);
+    border-top: 10px solid rgba(0, 0, 0, 0);
+    border-bottom: 10px solid rgba(0, 0, 0, 0);
+  }
+  .select2-results__options::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    background-color: #b33939;
+    border-right: 10px solid rgba(0, 0, 0, 0);
+    border-top: 10px solid rgba(0, 0, 0, 0);
+    border-bottom: 10px solid rgba(0, 0, 0, 0);
+  }
+  .select2-results__options::-webkit-scrollbar-button {
+    display: none;
+  }
+
+.select2-search__field{
+  border-radius:10px;
+}
+.select2-search__field:focus{
+  outline: none;
+}
+.select2-selection__rendered {
+    line-height: 31px !important;
+}
+.select2-selection{
+    border-radius: 15px !important;
+}
+.select2-container .select2-selection--single {
+    height: 35px !important;
+}
+.select2-selection__arrow {
+    height: 34px !important;
+}
+.select2-selection__clear{
+    margin-top: 4px !important;
+}
+.select2-selection:focus{
+  outline: none !important;
+}
+
+.searchBtn{
+    border-radius: 15px;
+    
+
+}
+.datepicker{
+  width: 100% !important;
+  border: none !important;
+}
+#dateTime{
+    width: 50vw;
+}
+.mainContainer{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.containerDiv{
+  width: 50%;
+  height: auto;
+  
+}
+.myBookingsContainer{
+  height: auto;
+}
+.bookingsDiv{
+
+  max-height: 17.5rem;
+  height: auto;
+ 
+  overflow: auto;
+}
+.total{
+  position: static;
+  bottom: 0px;
+}
+
+.datePickerDiv{
+  margin-bottom: 5px;
+}
+
+.SelectTime{
+
+  overflow: auto;
+  max-height: 10rem;
+  height: auto;
+ 
+ 
+
+}
+.SelectTime ul li{
+  list-style-type: none;
+  padding: 10px;
+  border-top:1px solid grey;
+  text-align: center;
+
+}
+.timePicker{
+  margin-top: -11px;
+}
+.SelectTime ul li:hover{
+  background-color: rgba(255, 121, 121,0.3);
+  cursor: pointer;
+}
+.SelectTime ul li.selected{
+  background-color:#b33939;
+  color: white;
+}
+
+/*
+.selectBooking:hover{
+  background-color: rgba(255, 121, 121,0.3);
+  cursor: pointer;
+}*/
+
+.selectBooking.selected{
+  background-color:#b33939;
+  color: white;
+}
+
+.ApponintmentShifts ul{
+  text-align: center;
+}
+
+.ApponintmentShifts ul li{
+  list-style-type: none;
+  display: inline;
+  padding: 8px;
+  font-size: large;
+
+}
+
+.ApponintmentShifts ul li:hover{
+  background-color: rgba(255, 121, 121,0.3);
+  cursor: pointer;
+}
+.ApponintmentShifts ul li.selectedShift{
+  background-color:#b33939;
+  color: white;
+}
+
+@media only screen and (max-width: 1100px) {
+  .containerDiv {
+    width: 100%;
+    height: auto;
+  }
+}

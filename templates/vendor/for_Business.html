@@ -1,0 +1,114 @@
+{% extends "vendor/reg_base.html" %}
+{% block title %} For Business {% endblock %}
+{% block content %}
+  <!--Form-->
+  <section>
+    <div class="form-container">
+      <form method="post">
+        {{ form.csrf_token }}
+        <div class="card form-card mt-4 mb-4 p-5">
+          <div class="text-center p-4">
+            <span class="brandHeading"><strong>wellhest</strong></span>
+            <hr>
+          </div>
+          <div class="text-center mb-4">
+            <span class="subText">Create wellhest Account</span>
+          </div>
+          <div class="md-form">
+            <input type="text" id="busi" name="business_name" class="form-control">
+            <label for="busi">Business Name</label>
+            {% for error in form.business_name.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+          <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-filled">
+            <label for="category"> Category</label>
+            <select class="form-control" name="category" id="category">
+              <option value=""></option>
+              <option value="beauty">Beauty</option>
+              <option value="fitness">Fitness</option>
+            </select>
+            {% for error in form.category.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+
+          <div class="md-form signUpFields">
+            <input type="text" id="name" name="name" class="form-control">
+            <label for="name">First & Last Name</label>
+            {% for error in form.name.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+          <div class="md-form signUpFields">
+            <input type="email" id="email" name="email" class="form-control">
+            <label for="email">Email</label>
+            {% for error in form.email.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="md-form">
+                <input type="text" id="city" name="city" class="form-control">
+                <label for="city">City</label>
+                {% for error in form.city.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="md-form signUpFields">
+                <input type="number" id="pincode" name="pin" class="form-control">
+                <label for="pincode">Pincode</label>
+                {% for error in form.pin.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="md-form">
+            <input type="text" id="add" name="address" class="form-control">
+            <label for="add">Address</label>
+            {% for error in form.address.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+          <div class="md-form">
+            <input type="text" id="gstinTB" name="gstin" class="form-control">
+            <label for="gstinTB">GSTIN</label>
+            {% for error in form.gstin.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+          <div class="md-form">
+            <input type="text" id="panTB" name="pan" class="form-control">
+            <label for="panTB">PAN</label>
+            {% for error in form.pan.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+          </div>
+          <div class="md-form">
+            <div style="display: flex;">
+              <div style="flex: 1;"><p style="padding-top: 25%;">+91-</p></div>
+              <div style="flex: 18;">
+            <input type="text" id="mobileNoTB" name="mobile_number" class="form-control">
+            <label for="mobileNoTB" style="padding-left: 5%;" >Mobile No.</label>
+            {% for error in form.mobile_number.errors %}
+              <p class="errorMsg">{{ error }}</p>
+            {% endfor %}
+            </div>
+            </div>
+            
+          </div>
+
+
+          <div class="form-button">
+            <input type="Submit" class="btn btn-danger" value="Sign In">
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% if 4 >= center.services|length  %}
+<div class="container">
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Gym' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Gym</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Yoga Centre' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Yoga Centre</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Fitness Studio' %}
+    {% if not ns.found %}
+    <hr>    
+    <p style="font-weight: bold; font-size: 18;">Fitness Studio</p>
+        {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Dance Studio' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Dance Studio</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Zumba Centres' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Zumba Centres</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Mha & Kickboxing' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Mha & Kickboxing</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% else %}
+<div class="container" style="overflow: auto;height: 25rem;">
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Gym' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Gym</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Yoga Centre' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Yoga Centre</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Fitness Studio' %}
+    {% if not ns.found %}
+    <hr>    
+    <p style="font-weight: bold; font-size: 18;">Fitness Studio</p>
+        {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Dance Studio' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Dance Studio</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Zumba Centres' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Zumba Centres</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Mha & Kickboxing' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Mha & Kickboxing</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

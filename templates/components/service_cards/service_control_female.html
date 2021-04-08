@@ -1,0 +1,14 @@
+<div class="custom-control" style="padding-left: 0%;">
+             <!-- <input class="custom-control-input checkboxCheck" type="text" value="Female" id="Femaleid" {% if cat_female|length %}checked{% endif %}> -->
+  <label>Female</label>
+</div>
+<div id="serviceFields" class="field_wrapper">
+{% for cat in cat_female %}
+  {% with gender='female' %}
+    {% include 'components/service_cards/service.html' %}
+  {% endwith %}
+{% endfor %}
+{% with gender='female', cat=None %}
+  {% include 'components/service_cards/service.html' %}
+{% endwith %}
+</div>

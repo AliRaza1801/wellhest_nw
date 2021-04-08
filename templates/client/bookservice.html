@@ -1,0 +1,492 @@
+<html>
+
+<head>
+    <title>wellhest | Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Notification</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Select 2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!--External-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bookservice.css')}}">
+    <script>
+        $(document).ready(function () {
+          if (window.location.href.indexOf('#loginModal') != -1) {
+            $('#loginModal').modal('show');
+          }
+        });
+        function setLoc(position){
+            console.log(position)
+            var source = `https://www.google.com/maps/embed/v1/directions?key={{ GOOGLE_API_KEY }}&origin=${position.coords.latitude},${position.coords.longitude}&destination=place_id:{{ center.place_id }}`
+            document.getElementById('directions').src = source
+        }
+        function geolocFail(){
+            if (navigator.geolocation) {
+                var location_timeout = setTimeout("geolocFail()", 10000);
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    clearTimeout(location_timeout);
+                    setLoc(position);
+                }, function(error) {
+                    clearTimeout(location_timeout);
+                    geolocFail();
+                });
+            } else {
+                // Fallback for no geolocation
+                geolocFail();
+            }
+        }
+        geolocFail();
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="header">
+                        <nav class="navigation">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-12 col-xs-12 ">
+                                    <div class="text-center">
+                                        <a class="navbar-logo" href="/">wellhest</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-12 col-xs-12">
+
+                                    <div class="text-center mt-1">
+                                        <select class="text-center" id="cityList">
+
+                                            <option></option>
+                                            <option value="lko">Lucknow</option>
+                                            <option value="kan">Kanpur</option>
+                                            <option value="Gha">Ghaziabad</option>
+                                            <option value="Agra">Agra</option>
+                                            <option value="Var">Varanasi</option>
+                                            <option value="Bar">Bareilly</option>
+                                            <option value="Fai">Faizabad</option>
+                                            <option value="Jha">Jhansi</option>
+                                            <option value="Gor">Gorakhpur</option>
+                                            <option value="Noida">Noida</option>
+                                            <option value="Sul">Sultanpur</option>
+                                            <option value="Bijnor">Bijnor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <div class="text-center d-flex justify-content-center align-items-center mt-1">
+                                        <button type="button" class="LocalityBTN" data-toggle="modal"
+                                            data-target="#LocalityModal">
+                                            <i class="fa fa-location-arrow"
+                                                aria-hidden="true"></i>&nbsp;&nbsp;<span>Locality</span>
+                                        </button>
+                                        <button type="button" class="ServicesBTN" data-toggle="modal"
+                                            data-target="#ServiceModal">
+                                            <i class="fa fa-search"
+                                                aria-hidden="true"></i>&nbsp;&nbsp;<span>Services</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12 col-xs-12">
+                                    <div class="text-center">
+                                        <button class="btn btn-sm searchBtn" style="color: white;background-color: darkred;">Search</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-2 col-sm-12 col-xs-12 navbar-right">
+                                    <div class="text-center">
+
+                                    {% if current_user.is_authenticated %}
+                                    <div class="mt-2">
+                                        <a id="loginSignup" href="{{ url_for('logout') }}">Logout</a>
+                                    {% else %}
+                                    </div>
+                                    <div>
+                                        <a id="loginSignup" href="#" data-toggle="modal" data-target="#loginModal"><i
+                                                id="userIcon" class="fa fa-user "
+                                                aria-hidden="true"></i>Login/Signup</a>
+                                    {% endif %}
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </header>
+{% include 'components/login_modal.html' %}
+    <!--Main Sec-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <!--Banner Sec-->
+                    <div class="row">
+                        <div class="col-12">
+                            <section style="height: 10rem;">
+                                <div class="container mt-3">
+                                    <div class="banner text-center py-1" >
+                                        {% if center.centre_image|length ==0 %}
+                                            <img src="img/avtaar.jpg/"
+                                                class="img-fluid p-2 img-thumbnail" id="bnr"  width="100%" height="100%">
+                                            <!-- <img src="{{ center.centre_image.image }}"
+                                                class="img-fluid p-2 img-thumbnail"  width="100%" height="100%"> -->
+                                        {% else %}
+                                        {% endif %}
+                                        <div class="BannerMenu">
+                                            <ul>
+                                                <li
+                                                    class="d-md-inline d-block text-center p-md-2 p-0 m-md-3 m-2 border-md-1 border-0" onclick="f1()">
+                                                    <span>Salon</span>
+                                                </li>
+                                                <li
+                                                    class="d-md-inline d-block text-center p-md-2 p-0 m-md-3 m-2 border-md-1 border-0">
+                                                    <span>Ambience</span>
+                                                </li>
+                                                <li
+                                                    class="d-md-inline d-block text-center p-md-2 p-0 m-md-3 m-2 border-md-1 border-0">
+                                                    <span>Team</span>
+                                                </li>
+                                                <li
+                                                    class="d-md-inline d-block text-center p-md-2 p-0 m-md-3 m-2 border-md-1 border-0">
+                                                    <span>Equipments</span>
+                                                </li>
+                                                <li
+                                                    class="d-md-inline d-block text-center p-md-2 p-0 m-md-3 m-2 border-md-1 border-0">
+                                                    <span>Videos</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function f1() {
+                                          document.getElementById("bnr").src = "img/avtaar.jpg/";
+                                        }
+                                        </script>
+
+                                </div>
+                            </section>
+                        </div>
+                        <!--End of Banner Sec-->
+                        <div class="col-12">
+                            <!--Name and details-->
+                            <section>
+                                <div class="container">
+                                    <div class="mt-3 py-1">
+                                      <h5> <strong> {{ center.business_name }} </strong></h5>
+                                    </div>
+                                    <div class="mb-3">
+                                        <span><i class="fas fa-map-marker-alt"></i> {{ center.address }}</span>
+                                    </div>
+                                    {% if center.partnership == 'exclusive' %}
+                                        <div class="mt-3 py-3">
+                                            <span>Wellhest Exclusive </span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </section>
+
+                        </div>
+                        <!--End Name and details-->
+                        <div class="col-12">
+                            <!-- Services -->
+                            <section class="card">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mt-2 text-md-left text-center">
+                                                <span><strong>Services</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if center.category == 'beauty' %}
+                                {% include 'client/components/booking_card_beauty.html' %}
+                                {% else %}
+                                {% include 'client/components/booking_card_fitness.html' %}
+                                {% endif %}
+                            </section>
+                            <hr>
+                            <!--End of Services-->
+                            
+                            </div>
+                        <div class="col-12">
+                            {% if current_user.is_authenticated %}
+                                {% if db.session.query(Cart).filter_by(user=current_user, business=center).all() %}
+                                    <a href="/checkout/{{ center.id }}" class="btn btn-success">Select Appointment Time</a>
+                                {% else %}
+                                    <a href="/checkout/{{ center.id }}" class="btn btn-success disabled">Select Appointment Time</a>
+                                {% endif %}
+                            {% else %}
+                                <a href="/checkout/{{ center.id }}" class="btn btn-success disabled">Select Appointment Time</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                             <!--review and rating-->
+                                <section>
+                                    <div class="container">
+                                        
+                                        <div class="mt-3 py-3">
+                                            <span>Review & Rating </span>
+                                        </div>
+                                      
+                                        <div class="mt-2 card p-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="float-left">
+                                                        <span class="px-2 text-center d-flex justify-content-center align-items-center UserstarRating">4 &nbsp;<i class="far fa-star"></i></span>
+
+                                                    </div>
+                                                    <div class="float-left">
+                                                        <span><strong class="ml-2">Awesome</strong></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mt-2">
+                                                        <span>Superb service and attention to detail, extremely professional and
+                                                            makes sure the customer is well attended while there</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="userDetails mt-2">
+                                                        <span><i class="far fa-user p-2 rounded-circle"></i></span>
+                                                        <span class="ml-2">Ashish</span>
+                                                        <hr>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="float-left">
+                                                        <span class="px-2 text-center d-flex justify-content-center align-items-center UserstarRating">4 &nbsp;<i class="far fa-star"></i></span>
+
+                                                    </div>
+                                                    <div class="float-left">
+                                                        <span><strong class="ml-2">Awesome</strong></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mt-2">
+                                                        <span>Superb service and attention to detail, extremely professional and
+                                                            makes sure the customer is well attended while there</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="userDetails mt-2">
+                                                        <span><i class="far fa-user p-2 rounded-circle"></i></span>
+                                                        <span class="ml-2">Ashish</span>
+                                                        <hr>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <button class="btn p-2">More</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="mt-2 py-3">
+                                            <div class="form-group redBorder">
+                                                <textarea class="form-control" rows="3"></textarea>
+                                            </div>
+                                            <div class="text-right">
+                                                <button class="btn btn-success btn-md">Write a review</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!--End of Review and rating-->
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="container card mt-3 p-0">
+                        <div class="mapAddress">
+                            <iframe src="https://www.google.com/maps/embed/v1/place?key={{ GOOGLE_API_KEY }}&q=place_id:{{ center.place_id }}" id="directions" frameborder="0" style="border:0;height: 100%;width: 100%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="container card mt-3 text-center" style="background-color: #b33939;">
+                        <div class="card mt-3 p-1">
+                            <div class="mt-1" style="margin-left: 2%;margin-right: 2%;text-align: center;box-shadow: 1px 1px 1px 1px #b33939;border: 1px solid #b33939;">
+                                <p class="mt-1"><strong>About us</strong></p>
+                                </div>
+                                <br>
+                            <div>
+                                <p style="text-justify: unset;">{{ center.description }}</p>
+                            </div>
+                        </div>
+                      {% if center.category == 'beauty' %}
+                        <div class="card p-1 " style="margin-top: 12%;">
+                            <div class="mt-1" style="margin-left: 2%;margin-right: 2%;text-align: center;box-shadow: 1px 1px 1px 1px #b33939;border: 1px solid #b33939;">
+                            <p class="mt-1"><strong>Product and Accessories used </strong></p>
+                            </div>
+                            <br>
+                            <div style="text-align: left;">
+                                <ul style="list-style-type:none;">
+                                {% if center.products.loreal %}
+                                    <li><p>Loreal</p></li>
+                                {% endif %}
+                                {% if center.products.garnier %}
+                                    <li><p>Garnier</p></li>
+                                {% endif %}
+                                {% if center.products.streaks %}
+                                    <li><p>Streaks</p></li>
+                                {% endif %}
+                                {% if center.products.tresemme %}
+                                    <li><p>Tresemme</p></li>
+                                {% endif %}
+                                {% if center.products.walla %}
+                                    <li><p>Walla</p></li>
+                                {% endif %}
+                                {% if center.products.wahl %}
+                                    <li><p>Wahl</p></li>
+                                {% endif %}
+                                {% if center.products.mac %}
+                                    <li><p>MAC</p></li>
+                                {% endif %}
+                                {% if center.products.mableme %}
+                                    <li><p>Mableme</p></li>
+                                {% endif %}
+                                {% if center.products.faces %}
+                                    <li><p>Faces</p></li>
+                                {% endif %}
+                                {% if center.products.colorbar %}
+                                    <li><p>Colorbar</p></li>
+                                {% endif %}
+                                {% if center.products.revlon %}
+                                    <li><p>revlon</p></li>
+                                {% endif %}
+                                {% if center.products.shehnaaz %}
+                                    <li><p>Shehnaaz</p></li>
+                                {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card p-1" style="margin-top: 12%;">
+                            <div class="mt-1" style="margin-left: 2%;margin-right: 2%;text-align: center;box-shadow: 1px 1px 1px 1px #b33939;border: 1px solid #b33939;">
+                                <p class="mt-1"><strong>Amenities</strong></p>
+                                </div>
+                                <br>
+                            <div>
+                                <ul style="list-style-type:none;"> 
+                                {% if center.products.garnier %}
+                                    <li><p>Personal Trainer</p></li>
+                                {% endif %}
+                                {% if center.products.streaks %}
+                                    <li><p>Get your own Trainer</p></li>
+                                {% endif %}
+                                {% if center.products.tresemme %}
+                                    <li><p>Steam and Sauna</p></li>
+                                {% endif %}
+                                {% if center.products.walla %}
+                                    <li><p>Cardio Equipment</p></li>
+                                {% endif %}
+                                {% if center.products.wahl %}
+                                    <li><p>Stretching Area</p></li>
+                                {% endif %}
+                                {% if center.products.mac %}
+                                    <li><p>Cycling Studio</p></li>
+                                {% endif %}
+                                {% if center.products.mableme %}
+                                    <li><p>Music Entertainment</p></li>
+                                {% endif %}
+                                {% if center.products.faces %}
+                                    <li><p>Nutritional Support</p></li>
+                                {% endif %}
+                                {% if center.products.colorbar %}
+                                    <li><p>Physiotherapist</p></li>
+                                {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="card p-1 text-center"style="margin-top: 12%;margin-bottom:5%">
+                            <div class="mt-1" style="margin-left: 2%;margin-right: 2%;text-align: center;box-shadow: 1px 1px 1px 1px #b33939;border: 1px solid #b33939;">
+                                <p class="mt-1"><strong>Opening and Closing Time & Days </strong></p>
+                                </div>
+                                <br>
+                            {% if center.open_time and center.close_time and center.day_from and center.day_to %}
+                        
+                                <div style="font-size: 12px;"class="mt-1 border d-flex justify-content-between p-1 font-weight-bold">
+                                    <span >Open at {{ center.open_time.strftime('%I:%M %p') }} </span> 
+                                    <span >Closes At {{ center.close_time.strftime('%I:%M %p') }}</span>
+                                </div>
+                                <div style="font-size: 12px;"class="mt-1 border d-flex justify-content-between p-1 font-weight-bold">
+                                    <span style="text-transform: capitalize;" >From: {{ center.day_from }} </span> 
+                                    <span style="text-transform: capitalize;">To: {{ center.day_to }}</span>
+                                </div>
+                        {% endif%}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+</body>
+
+</html>
+<script>
+    $("#cityList").select2({
+        width: '55%',
+        placeholder: 'Select City',
+        allowClear: 'true',
+
+    })
+    $('#cityList').on('select2:open', function (e) {
+        $('.select2-dropdown').hide();
+        setTimeout(function () { $('.select2-dropdown').slideDown("slow", "easeInOutQuint"); }, 200);
+    });
+
+   
+</script>

@@ -1,0 +1,231 @@
+{% if 4 >= center.services|length  %}
+<div class="container">
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Hair Cut & Care' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Hair Cut & Care</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Face' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Face</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Waxing & Threading' %}
+    {% if not ns.found %}
+    <hr>    
+    <p style="font-weight: bold; font-size: 18;">Waxing & Threading</p>
+        {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Manicure and Pedicure' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Manicure and Padicure</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Spa/Massages' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Spa/Massages</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Treatments' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Treatments</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Wedding/Bridal makeup' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Wedding/Bridal Makeup</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+    {% set ns = namespace(found=false) %}
+    {% for service in center.services %}
+    {% if service.category == 'Packages' %}
+    {% if not ns.found %}
+    <hr>
+    <p style="font-weight: bold; font-size: 18;">Pakages</p>
+    {% set ns.found=true %}
+    {% endif %}
+    <div class="row">
+            {% include 'client/components/booking_service_card.html' %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% else %}
+<div class="container" style="overflow: auto;height: 25rem;">
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Hair Cut & Care' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Hair Cut & Care</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Face' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Face</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Waxing & Threading' %}
+{% if not ns.found %}
+<hr>    
+<p style="font-weight: bold; font-size: 18;">Waxing & Threading</p>
+    {% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Manicure and Pedicure' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Manicure and Padicure</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Spa/Massages' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Spa/Massages</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Treatments' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Treatments</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Wedding/Bridal makeup' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Wedding/Bridal Makeup</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+
+{% set ns = namespace(found=false) %}
+{% for service in center.services %}
+{% if service.category == 'Packages' %}
+{% if not ns.found %}
+<hr>
+<p style="font-weight: bold; font-size: 18;">Pakages</p>
+{% set ns.found=true %}
+{% endif %}
+<div class="row">
+        {% include 'client/components/booking_service_card.html' %}
+</div>
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}

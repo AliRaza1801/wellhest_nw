@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Services</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!--Select 2-->
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/vendor.css')}}">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/js/gijgo.min.js"></script>
+
+</head>
+
+<body>
+{% include 'components/flash.html' %}
+{% include 'components/vendor_header.html' %}
+{% include 'components/vendor_back.html' %}
+  <div class="container p-3">
+    <form method="post" enctype="multipart/form-data" action="upload-image">
+      {{ form.csrf_token }}
+      <section class="card ">
+        <div class="container">
+          <h3 class="mt-4 ml-4">Images Upload</h3>
+        </div>
+        <div class="container mb-3">
+          <div class="ml-4">
+            <div class="row ">
+              <div class="col-md-4 col-xs-12 p-3">
+                <strong>
+                  {% if current_user.business_client.category == 'beauty' %}
+                    Salon
+                  {% else %}
+                    Fitness Centre
+                  {% endif %} :
+                </strong>
+              </div>
+              <div class="col-8 col-xs-12 p-3">
+                <input name="centre_image" class="ml-4" type="file"  accept="image/*" multiple>
+              </div>
+              <div class="col-md-4 col-xs-12 p-3">
+                <strong>Ambience :</strong>
+              </div>
+              <div class="col-8 col-xs-12 p-3">
+                <input name="ambience_image" class="ml-4" type="file"  accept="image/*" multiple>
+              </div>
+              <div class="col-md-4 col-xs-12 p-3">
+                <strong>Staff</strong>
+              </div>
+              <div class="col-8 col-xs-12 p-3">
+                <input name="staff_image" class="ml-4" type="file"  accept="image/*" multiple>
+              </div>
+              <div class="col-md-4 col-xs-12 p-3">
+                <strong>Equipments</strong>
+              </div>
+              <div class="col-8 col-xs-12 p-3">
+                <input name="equipments_image" class="ml-4" type="file"  accept="image/*" multiple>
+              </div>
+              <div class="col-md-4 col-xs-12 p-3">
+                <strong>Services</strong>
+              </div>
+              <div class="col-8 col-xs-12 p-3">
+                <input name="service_image" class="ml-4" type="file"  accept="image/*" multiple>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mb-4">
+          <input class="btn btn-primary mt-4" type="Submit" value="Upload">
+        </div>
+      </section>
+    </form>
+    <form method="post" action="business-type">
+      <section style="height: auto;" class="mt-4 card">
+        <div class="container">
+           <h3 class="mt-4 ml-4 mr-4">Service Type :</h3>
+           <div class="pl-4 pt-2">
+            <input type="radio" name="business_type" value="unisex" id="unisex" onchange="this.form.submit()" {{ 'checked' if client.business_type == 'unisex' }}>
+            <label for="unisex" class="pl-1 pr-4">Unisex</label>
+            <input type="radio" name="business_type" value="male" id="male" onchange="this.form.submit()" {{ 'checked' if client.business_type == 'male' }}>
+            <label for="male" class="pl-1 pr-4">Male</label>
+            <input type="radio" name="business_type" value="female" id="female" onchange="this.form.submit()" {{ 'checked' if client.business_type == 'female' }}>
+            <label for="female">Female</label>
+            </div>
+        </div>
+      </section>
+    </form>
+      <!--Service Category-->
+      <section style="height: auto;" class="mt-4 card">
+        <div class="container">
+          <h3 class="mt-4 ml-4">Service Category :</h3>
+        </div>
+        <div class="container ml-4 mb-4">
+          {% if client.business_type == 'unisex' %}
+            {% include 'components/service_cards/service_control_female.html' %}
+            {% include 'components/service_cards/service_control_male.html' %}
+          {% elif client.business_type == 'male' %}
+            {% include 'components/service_cards/service_control_male.html' %}
+          {% elif client.business_type == 'female' %}
+            {% include 'components/service_cards/service_control_female.html' %}
+          {% endif %}
+        </div>
+
+      </section>
+    <form method="post" enctype="multipart/form-data">
+      {{ form.csrf_token }}
+      <section style="height: auto;" class="mt-4 card">
+        <div class="container">
+          <h3 class="mt-4 ml-4">Short Description :</h3>
+        </div>
+        <div class="container ml-4 mb-4">
+<!--          <input type="text"/>-->
+          <textarea name="description" class="form-control two-liner" placeholder="Write a two line description of your business"
+          >{{ client.description if client.description else '' }}</textarea>
+
+        </div>
+
+      </section>
+      <section style="height: auto;" class="mt-4 card">
+        <div class="container">
+          <h3 class="mt-4 ml-4">Filters : </h3>
+        </div>
+        <div class="container">
+          <div class="row ml-4 pb-4">
+            {% if current_user.business_client.category == 'beauty' %}
+            <div class="col-6">
+
+              <div class="custom-control custom-checkbox ">
+                <input name="wifi" class="custom-control-input" type="checkbox" value="wifi" id="defaultCheck1" {% if client.feature.wifi %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck1">
+                  Wifi
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="music" class="custom-control-input" type="checkbox" value="music" id="defaultCheck2" {% if client.feature.music %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck2">
+                  Music
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="ac" class="custom-control-input" type="checkbox" value="AC" id="defaultCheck3" {% if client.feature.ac %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck3">
+                  AC
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="disinfect" class="custom-control-input" type="checkbox" value="Disinfectant" id="defaultCheck4" {% if client.feature.disinfect %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck4">
+                  Disinfectant
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="parking" class="custom-control-input" type="checkbox" value="Free Parking Available" id="defaultCheck5" {% if client.feature.parking %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck5">
+                  Free Parking Available
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="organic" class="custom-control-input" type="checkbox" value="Natural / Organic Ingredients" id="defaultCheck6" {% if client.feature.organic %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck6">
+                  Natural / Organic Ingredients
+                </label>
+              </div>
+                <!--  <div class="dropdown mt-3 mb-4">-->
+                <!--    <select id="select2">-->
+                <!--      <option value="" disabled selected>Select an option</option>-->
+                <!--      <option value="1">Option 1</option>-->
+                <!--      <option value="2">Option 2</option>-->
+                <!--      <option value="3">Option 3</option>-->
+                <!--    </select>-->
+                <!--</div>-->
+            </div>
+            {% else %}
+            <div class="col-6">
+              <div class="custom-control custom-checkbox ">
+                <input name="wifi" class="custom-control-input" type="checkbox" value="Wifi" id="defaultCheck7" {% if client.feature.wifi %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck7">
+                  Wifi
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="music" class="custom-control-input" type="checkbox" value="Music" id="defaultCheck8" {% if client.feature.music %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck8">
+                  Music
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="ac" class="custom-control-input" type="checkbox" value="AC" id="defaultCheck9" {% if client.feature.ac %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck9">
+                  AC
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="disinfect" class="custom-control-input" type="checkbox" value="Disinfectant" id="defaultCheck10" {% if client.feature.disinfect %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck10">
+                  Disinfectant
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="parking" class="custom-control-input" type="checkbox" value="Free Parking Available" id="defaultCheck11" {% if client.feature.parking %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck11">
+                  Free Parking Available
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="safety" class="custom-control-input" type="checkbox" value="Safety Standards" id="defaultCheck12" {% if client.feature.safety %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck12">
+                  Safety Standards
+                </label>
+              </div>
+
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+      <!--Working Hours-->
+      <section style="height: auto;" class="mt-4 card">
+        <div class="container">
+          <h3 class="mt-4 ml-4">Working Hours : </h3>
+        </div>
+        <div class="container">
+          <div class="row ml-4 pb-4">
+            <div class="col-6">
+              <div class="md-form ">
+              <span>Opening Time :</span>
+              <input name="open_time" id="timepicker" width="276" value="{{ client.open_time.strftime('%H:%M') if client.open_time else '' }}" />
+              </div>
+              <div class="md-form ">
+                <span>Closing Time :</span>
+                <input name="close_time" id="timepicker2" width="276" value="{{ client.close_time.strftime('%H:%M') if client.close_time else '' }}" />
+              </div>
+              <div class="md-form ">
+                <span>Days :</span>
+                <div class="row w-100">
+                  <div class="col-md-6">
+                    <span>From :</span>
+                    <select name="day_from" id="daySelectFrom" width="auto">
+
+                      <option value="sunday"  {% if client.day_from=='sunday' %}selected{% endif %}>Monday</option>
+                      <option value="monday"  {% if client.day_from=='monday' %}selected{% endif %}>Tuesday</option>
+                      <option value="tuesday"  {% if client.day_from=='tuesday' %}selected{% endif %}>Wednesday</option>
+                      <option value="wednesday"  {% if client.day_from=='wednesday' %}selected{% endif %}>Thursday</option>
+                      <option value="thursday"  {% if client.day_from=='thursday' %}selected{% endif %}>Friday</option>
+                      <option value="friday"  {% if client.day_from=='friday' %}selected{% endif %}>Saturday</option>
+                      <option value="saturday"  {% if client.day_from=='saturday' %}selected{% endif %}>Sunday</option>
+                  </select>
+                  </div>
+                  <div class="col-md-6 ">
+                    <span>To :</span>
+                    <select name="day_to" id="daySelectTo" width="auto">
+
+                      <option value="sunday"  {% if client.day_to=='sunday' %}selected{% endif %}>Monday</option>
+                      <option value="monday"  {% if client.day_to=='monday' %}selected{% endif %}>Tuesday</option>
+                      <option value="tuesday"  {% if client.day_to=='tuesday' %}selected{% endif %}>Wednesday</option>
+                      <option value="wednesday"  {% if client.day_to=='wednesday' %}selected{% endif %}>Thursday</option>
+                      <option value="thursday"  {% if client.day_to=='thursday' %}selected{% endif %}>Friday</option>
+                      <option value="friday"  {% if client.day_to=='friday' %}selected{% endif %}>Saturday</option>
+                      <option value="saturday"  {% if client.day_to=='saturday' %}selected{% endif %}>Sunday</option>
+                  </select>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section style="height: auto;" class="mt-4 card">
+        <div class="container">
+          <h3 class="mt-4 ml-4">Review & Rating : </h3>
+        </div>
+        <div class="container">
+          <div class="row ml-4 pb-4">
+            {% if current_user.business_client.category == 'beauty' %}
+            <div class="col-6">
+              <div class="custom-control custom-checkbox ">
+                <input name="service" class="custom-control-input" type="checkbox" value="Service" id="defaultCheck13" {% if client.review.service %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck13">
+                  Service
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="ambience" class="custom-control-input" type="checkbox" value="Ambience" id="defaultCheck14" {% if client.review.ambience %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck14">
+                  Ambience
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="hygiene" class="custom-control-input" type="checkbox" value="Hygine" id="defaultCheck15" {% if client.review.hygiene %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck15">
+                  Hygine
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="staff" class="custom-control-input" type="checkbox" value="Staff" id="defaultCheck16" {% if client.review.staff %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck16">
+                  Staff
+                </label>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-6">
+              <div class="custom-control custom-checkbox ">
+                <input name="facilities" class="custom-control-input" type="checkbox" value="Facilities" id="defaultCheck17" {% if client.review.facilities %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck17">
+                  Facilities
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="ambience" class="custom-control-input" type="checkbox" value="Ambience" id="defaultCheck18" {% if client.review.ambience %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck18">
+                  Ambience
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="equipments" class="custom-control-input" type="checkbox" value="Equipments" id="defaultCheck19" {% if client.review.equipments %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck19">
+                  Equipments
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox ">
+                <input name="trainer" class="custom-control-input" type="checkbox" value="Trainer" id="defaultCheck20" {% if client.review.trainer %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck20">
+                  Trainer
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox  ">
+                <input name="hygiene" class="custom-control-input" type="checkbox" value="Hygine" id="defaultCheck21" {% if client.review.hygiene %}checked{% endif %}>
+                <label class="custom-control-label" for="defaultCheck21">
+                  Hygine
+                </label>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+      <section style="height: auto;" class="mt-4 card">
+        {% if current_user.business_client.category == 'beauty' %}
+        <div class="container">
+          <h3 class="mt-4 ml-4">Products & Accessories Used :</h3>
+        </div>
+        <div class="container">
+          <div class="row ml-4 mb-4">
+            <div class="col-lg-4">
+              <div class="custom-control custom-checkbox  ">
+                <input class="custom-control-input" type="checkbox" name="loreal" id="prodAcc1" value="Loreal" {% if client.products.loreal %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc1">
+                  Loreal
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="garnier" id="prodAcc2" value="Garnier" {% if client.products.garnier %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc2">
+                  Garnier
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="streaks" id="prodAcc3" value="Streaks" {% if client.products.streaks %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc3">
+                  Streaks
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="tresemme" id="prodAcc4" value="Tresemme" {% if client.products.tresemme %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc4">
+                  Tresemme
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="walla" id="prodAcc5" value="Walla"  {% if client.products.walla %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc5">
+                  Walla
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="wahl" id="prodAcc6" value="WAHL"  {% if client.products.wahl %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc6">
+                  WAHL
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="mac" id="prodAcc7" value="MAC"  {% if client.products.mac %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc7">
+                  MAC
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="mableme" id="prodAcc8" value="Mableme"  {% if client.products.mableme %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc8">
+                  Mableme
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="faces" id="prodAcc9" value="Faces"  {% if client.products.faces %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc9">
+                  Faces
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="colorbar" id="prodAcc10" value="Colobar"  {% if client.products.colorbar %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc10">
+                  Colobar
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="revlon" id="prodAcc11" value="Rablon"  {% if client.products.revlon %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc11">
+                  Rablon
+                </label>
+              </div>
+
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" type="checkbox" name="shehnaaz" id="prodAcc12" value="Shehnaaz"  {% if client.products.shehnaaz %}checked{% endif %}>
+                <label class="custom-control-label" for="prodAcc12">
+                  Shehnaaz
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+          {%else%}
+          <div class="container">
+            <h3 class="mt-4 ml-4">Amenities</h3>
+          </div>
+          <div class="container">
+            <div class="row ml-4 mb-4">
+              <div class="col-lg-4">
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="garnier" id="prodAcc2" value="Personal Trainer" {% if client.products.garnier %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc2">
+                    Personal Trainer
+                  </label>
+                </div>
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="streaks" id="prodAcc3" value="Get your own trainer" {% if client.products.streaks %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc3">
+                    Get your own trainer
+                  </label>
+                </div>
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="tresemme" id="prodAcc4" value="Steam and Sauna" {% if client.products.tresemme %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc4">
+                    Steam and Sauna
+                  </label>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="walla" id="prodAcc5" value="Cardio Equipment"  {% if client.products.walla %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc5">
+                    Cardio Equipment
+                  </label>
+                </div>
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="wahl" id="prodAcc6" value="Stretching Area"  {% if client.products.wahl %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc6">
+                    Stretching Area
+                  </label>
+                </div>
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="mac" id="prodAcc7" value="Cycling Studio"  {% if client.products.mac %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc7">
+                    Cycling Studio
+                  </label>
+                </div>
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="mableme" id="prodAcc8" value="Music Entertainment"  {% if client.products.mableme %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc8">
+                    Music Entertainment
+                  </label>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="faces" id="prodAcc9" value="Nutritional Support"  {% if client.products.faces %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc9">
+                    Nutritional Support
+                  </label>
+                </div>
+  
+                <div class="custom-control custom-checkbox ">
+                  <input class="custom-control-input" type="checkbox" name="colorbar" id="prodAcc10" value="Physiotherapist"  {% if client.products.colorbar %}checked{% endif %}>
+                  <label class="custom-control-label" for="prodAcc10">
+                    Physiotherapist
+                  </label>
+                </div>
+              </div>
+            </div>
+            </div>
+            {% endif %}
+            <input class="btn btn-primary mt-4" type="Submit" value="Submit">
+          </div>
+      </section>
+    </form>
+  </div>
+</body>
+<script>
+
+$('#daySelectFrom').dropdown();
+$('#daySelectTo').dropdown();
+$('.serviceCategory').each(function(){
+    $(this).dropdown();
+});
+//     //Service Catg Fields
+//     $(function(){
+//       $(".checkboxCheck").click(function(){
+//         if($('#Maleid').prop("checked") == true){
+//           $("#serviceFieldsM").slideDown();
+//           $('#addmorebtnDivM').show();
+//
+//         }
+//         if($('#femaleId').prop("checked") == true){
+//           $("#serviceFields").slideDown();
+//           $('#addmorebtnDiv').show();
+//         }
+//         if($('#Maleid').prop("checked") == false){
+//           $("#serviceFieldsM").hide(500);
+//           $('#addmorebtnDivM').hide(500);
+//         }
+//         if($('#femaleId').prop("checked") == false){
+//           $("#serviceFields").hide(500);
+//           $('#addmorebtnDiv').hide(500);
+//         }
+//       });
+//     });
+//
+// $(document).ready(()=>{
+//   var maxField=5;
+//   var addButton =$("#addmore");
+//   var addButtonM =$("#addmorem");
+//   var wrapper=$(".field_wrapper");
+//   var wrapperM=$(".field_wrapperM");
+//   var textFieldid=2;
+//   var textFieldidM=102;
+//
+//   var x=1;
+//   $(addButton).click(()=>{
+//     if(x<maxField){
+//       x++;
+//       var fieldHTML=`
+//         <div class="row Mainwrapper newWrap">
+//           <div class="col-md-3 col-xs-12">
+//             <div class="md-form catg">
+//               <input type="text" id="${textFieldid}" name="Category1" class="form-control">
+//               <label for="${textFieldid}">Category</label>
+//             </div>
+//           </div>
+//           <div class="col-md-3 col-xs-12">
+//           <div class="md-form">
+//             <input type="text" id="${textFieldid+1}" name="SubCategory1" class="form-control">
+//             <label for="${textFieldid+1}">Sub Category</label>
+//           </div>
+//         </div>
+//         <div class="col-md-3 col-xs-12">
+//           <div class="md-form">
+//             <input type="text" id="${textFieldid+2}" name="price1" class="form-control">
+//             <label for="${textFieldid+2}">Prices</label>
+//           </div>
+//         </div>
+//         <div class="col-md-3 col-xs-12">
+//           <div class="md-form">
+//             <a class="wp_remove" href="javascript:void(0);">
+//               <i class="fa fa-minus-circle remove" aria-hidden="true"></i>
+//             </a>
+//           </div>
+//         </div>
+//       </div>`;
+//       $(wrapper).append(fieldHTML);
+//       textFieldid+=3;
+//     }
+//     else{
+//       $('#addmorebtnDiv').hide();
+//     }
+//     if($('.catg').length<maxField){
+//       $('#addmorebtnDiv').show();
+//     }
+//     else{
+//       $('#addmorebtnDiv').hide();
+//     }
+//   });
+//
+//   var xm=1;
+//   $(addButtonM).click(()=>{
+//     if(xm<maxField){
+//       xm++;
+//       var fieldHTMLM=`
+//         <div class="row Mainwrapper newWrap">
+//           <div class="col-md-3 col-xs-12">
+//             <div class="md-form catgm">
+//               <input type="text" id="${textFieldidM}" name="Categorym" class="form-control">
+//               <label for="${textFieldidM}">Category</label>
+//             </div>
+//           </div>
+//           <div class="col-md-3 col-xs-12">
+//           <div class="md-form">
+//             <input type="text" id="${textFieldidM+1}" name="SubCategorym" class="form-control">
+//             <label for="${textFieldidM+1}">Sub Category</label>
+//           </div>
+//         </div>
+//         <div class="col-md-3 col-xs-12">
+//           <div class="md-form">
+//             <input type="text" id="${textFieldidM+2}" name="pricem" class="form-control">
+//             <label for="${textFieldidM+2}">Prices</label>
+//           </div>
+//         </div>
+//         <div class="col-md-3 col-xs-12">
+//           <div class="md-form">
+//             <a class="wp_remove" href="javascript:void(0);">
+//               <i class="fa fa-minus-circle remove" aria-hidden="true"></i>
+//             </a>
+//           </div>
+//         </div>
+//       </div>`;
+//       $(wrapperM).append(fieldHTMLM);
+//       textFieldidM+=3;
+//     }
+//     else{
+//       $('#addmorebtnDivM').hide();
+//     }
+//     if($('.catgm').length<maxField){
+//       $('#addmorebtnDivM').show();
+//     }
+//     else{
+//       $('#addmorebtnDivM').hide();
+//     }
+//   });
+//
+//   $(document).on('click','.wp_remove',(e)=>{
+//     $(e.target).parents(".Mainwrapper").remove();
+//     x--;
+//
+//     if($('.catgm').length<maxField){
+//       $('#addmorebtnDivM').show();
+//     }
+//     else{
+//       $('#addmorebtnDivM').hide();
+//     }
+//
+//     if($('.catg').length<maxField){
+//       $('#addmorebtnDiv').show();
+//     }
+//     else{
+//       $('#addmorebtnDiv').hide();
+//     }
+//   });
+// });
+$('#timepicker').timepicker({
+            showOtherMonths: true
+        });
+$('#timepicker2').timepicker({
+    showOtherMonths: true
+});
+</script>
+</html>

@@ -1,0 +1,71 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
+    <div class="modal-content form-elegant">
+      <div class="modal-header text-center">
+        <h4 class="text-center w-100 "><strong>Login</strong></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="xSign"aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        <div class="container">
+            <div class="row d-flex justify-content-center ">
+                <div class="col-12 ">
+                    <div class="w-100  px-4">
+                      <form method="post" action="{{ url_for('login') }}">
+                        {{ login_form.csrf_token }}
+                        <div class="row">
+                         
+                            <div class="col-12">
+                                <div class="md-form form-group mt-5">
+                                    <input type="text" name="email" class="form-control" id="formID" >
+                                    <label for="formID">Email ID / Mobile No</label>
+                                </div>
+
+                             
+                            </div>
+                            <div class="col-12">
+                                <div class="md-form form-group ">
+                                    <input type="password" name="password"class="form-control" id="formPass" >
+                                    <label for="formPass">Password</label>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-md btnColor ">Login</button>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-12">
+                               <div class=" text-center">OR</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <button class="btn btn-md  btn-outline-danger waves-effect">Request for OTP</button>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="my-5">
+                                    <hr>
+                                  <div class="text-center"><span>New to wellhest? <a href="#"><span style="color: #b33939;">Create an Account</span></a></span></div> 
+                           
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                      </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

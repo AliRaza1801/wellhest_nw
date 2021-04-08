@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Description of Business</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Select 2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/vendor.css')}}">
+    <!--Gijgo-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/js/gijgo.min.js"></script>
+    <script src="{{url_for('static',filename='js/map_search.js')}}"></script>
+    <style>
+        span{
+            color: gray;
+            font-weight: lighter;
+            font-size:small ;
+        }
+    </style>
+    </head>
+    <body>
+        {% include 'components/flash.html' %}
+        {% include 'components/vendor_header.html' %}
+        <div class="container-fluid card p-3 mb-3">
+            {% include 'components/vendor_back.html' %}
+            <form method="post" enctype="multipart/form-data">
+                {% if form.errors %}
+                <ul>
+                    {% for error in form.errors %}
+                    <li>*{{error}}: {{form.errors[error]}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {{ form.csrf_token }}
+                <section>
+                    <div class="container">
+                        <h3 class="mt-4 ml-4">Basic Details</h3>
+                    </div>
+                    <div class="container">
+                        <div class="ml-4">
+                            <div class="card p-3">
+                                {% if not client.updated %}
+                                    <div class="md-form form-group ">
+                                        <input type="radio" class="form-control" id="standard"  name="partnership" value='standard' {% if client.partnership=='standard' %} checked {% endif %} >
+                                        <label for="standard">Standard</label>
+                                    </div>
+                                    <div class="md-form form-group ">
+                                        <input type="radio" class="form-control" id="exclusive"  name="partnership" value='exclusive' {% if client.partnership=='exclusive' %} checked {% endif %} >
+                                        <label for="exclusive">Exclusive</label>
+                                    </div>
+                                {% else %}
+                                    <div class="md-form form-group ">
+                                            <span>Partnership:</span>
+                                            <p style="text-transform: capitalize;">{{ client.partnership }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="card p-3 mt-4">
+                                <div class="md-form form-group ">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="business"  name="business_name" value="{{ client.business_name }}">
+                                    <label for="business">Name of Business</label>
+                                    {% else %}
+                                    <span>Name of Business:</span>
+                                    <p>{{ client.business_name }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form ">
+                                    <span>Category :</span>
+                                    {% if not client.updated %}
+                                    <select id="category" name="category" width="100%">
+                                      <option value="beauty" {% if client.category=='beauty' %}selected{% endif %}>Beauty</option>
+                                      <option value="fitness" {% if client.category=='fitness' %}selected{% endif %}>Fitness</option>
+                                    </select>
+                                    {% else %}
+                                        <p>{{ client.category }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card p-3 mt-4">
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="o_name"  name="owner_name" value="{{ client.user.name }}">
+                                    <label for="o_name">Owner Name</label>
+                                    {% else %}
+                                    <span>Owner Name:</span>
+                                    <p>{{ client.user.name }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="m_name"  name="manager_name" value="{{ client.manager_name if client.manager_name else '' }}">
+                                    <label for="m_name">Manager Name</label>
+                                    {% else %}
+                                    <span>Manager Name:</span>
+                                    <p>{{ client.manager_name }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card p-3 mt-4">
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="gstin"  name="gstin" value="{{ client.gstin }}">
+                                    <label for="gstin">GSTIN</label>
+                                    {% else %}
+                                    <span>GSTIN:</span>
+                                    <p>{{ client.gstin }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="license"  name="license_number" value="{{ client.license_number if client.license_number else '' }}">
+                                    <label for="license">License No.</label>
+                                    {% else %}
+                                        <span>License No.:</span>
+                                        <p>{{ client.license_number }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card p-3 mt-4">
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="pan"  name="pan" value="{{ client.pan }}">
+                                    <label for="pan">PAN</label>
+                                    {% else %}
+                                        <span>PAN :</span>
+                                        <p>{{ client.pan }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                        <span>Upload Business ID</span>
+                                        <br><br>
+                                        <input name="business_id"  type="file"  accept="image/*" multiple>
+                                    {% else %}
+                                        <span>Business ID</span>
+                                        <br><br>
+                                        <img src="{{ client.business_id }}">
+                                    {% endif %}
+                                </div>
+                           </div>
+                            <div class="card p-3 mt-4">
+                                <div class="md-form form-group mt-2">
+                                    <span style="font-size: medium;">Mobile No</span>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                          <div class="md-form">
+                                            {% if not client.updated %}
+                                              <input type="text" id="ownerMob" name="mobile_number" class="form-control" value="{{ client.mobile_number }}">
+                                            <label for="ownerMob">Owner Mobile No.</label>
+                                              {% else %}
+                                              <span>Owner Mobile No.:</span>
+                                              <p>{{ client.mobile_number }}</p>
+                                              {% endif %}
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                          <div class="md-form">
+                                            {% if not client.updated %}
+                                              <input type="text" id="ManagerMob" name="mobile_number_manager" class="form-control" value="{{ client.mobile_number_manager if client.mobile_number_manager else '' }}">
+                                            <label for="ManagerMob">Manager Mobile No.</label>
+                                              {% else %}
+                                              <span>Manager Mobile No.:</span>
+                                              <p>{{ client.mobile_number_manager }}</p>
+                                              {% endif %}
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="card p-3 mt-4">
+                                <input type="hidden" id="lat" name="lat" value="{{ client.lat }}">
+                                <input type="hidden" id="lng" name="lng" value="{{ client.lng }}">
+                                <input type="hidden" id="place_id" name="place_id" value="{{ client.place_id }}">
+                                <div class="md-form form-group">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="loc" onkeyup="searchPlace(event)" >
+                                    <label for="loc">Search Google Location</label>
+                                    <div class="location-list"></div>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="add"  name="address" value="{{ client.address }}">
+                                    <label for="add">Address</label>
+                                    {% else %}
+                                    <span>Address :</span>
+                                    <p>{{ client.address }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="locale"  name="locality" value="{{ client.locality if client.locality else '' }}">
+                                    <label for="add">Locality</label>
+                                    {% else %}
+                                    <span>Locality :</span>
+                                    <p>{{ client.locality }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                    <input type="text" class="form-control" id="city"  name="city" value="{{ client.city }}">
+                                    <label for="city">City</label>
+                                    {% else %}
+                                    <span>City :</span>
+                                    <p>{{ client.city }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="md-form form-group mt-2">
+                                    {% if not client.updated %}
+                                        <input type="text" class="form-control" id="pin"  name="pin" value="{{ client.pin }}">
+                                        <label for="pin">Pin Code</label>
+                                    {% else %}
+                                    <span>Pin Code :</span>
+                                    <p>{{ client.pin }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if not client.updated %}
+                                <input class="btn btn-primary mt-4" type="Submit" value="Submit">
+                            {% endif %}
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </body>
+</html>
+<script>
+    $('#category').dropdown();
+    function searchPlace(event){
+      $.ajax({
+        type: "GET",
+        url: '{{ url_for('place_search') }}',
+        data: {
+          'query': event.target.value,
+        },
+        success: function(data){
+          render(data)
+        },
+      });
+    }
+    function placeDetails(event){
+      $.ajax({
+        type: "GET",
+        url: '{{ url_for('place_details') }}',
+        data: {
+          'place_id': event.target.id,
+        },
+        success: function(data){
+          selectLocation(data)
+        },
+      });
+    }
+</script>

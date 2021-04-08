@@ -1,0 +1,136 @@
+{% for center in centers %}
+<section style="height: auto;"class="card mt-3">
+    <div class="row">
+        <div class="col-4 ">
+            <div class="imgContainer">
+                {% if center.centre_image|length %}
+                    <img src="{{ center.centre_image[-1].image }}"
+                        class="img-fluid h-100 w-100">
+                {% else %}
+                {% endif %}
+                <div class="overlay"></div>
+                <div class="morebutton"><a href="#" style="font-size: .7rem;"> More Images </a></div>
+            </div>
+        </div>
+        <div class="col-8 ">
+            <div class="row pr-2">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                        <div class="mt-2" onclick="window.location.href='/booking/{{ center.id }}';">
+                            <div>
+                            <h5><strong>{{ center.business_name }}</strong></h5>
+                            </div>
+                            <div style="font-size: 0.8rem;">
+                                <span>{{ center.address }}</span>
+                            </div>
+                        </div>
+                         
+                        <div class="mt-3">
+                            <div style="font-size: 0.8rem;"> 
+                                <div>
+                                    <a class="rounded-circle p-2 border"href="#"><i class="fas fa-location-arrow"></i></a>
+                                </div>
+                                <div class="mt-2" >
+                                    <span>5km</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="col-12">
+                    <div class="d-flex  align-items-center" onclick="window.location.href='/booking/{{ center.id }}';">
+                       
+                        <div class="ratings " >
+                            <div class="empty-stars"></div>
+                            <div class="full-stars" style="width:80%"></div>
+                        </div>
+                        <div>
+                            <span class="ml-3  font-weight-bold" style="font-size: 15px;color: #3B3B98;">4.0</span>
+                            <span class="ml-3" style="font-size: 13px;">(17 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mt-2 border py-2 pl-1">
+                        {% if center.feature.ac %}
+                            <span data-toggle="tooltip" title="AC" class="roundedIcon text-center"><i class="fas fa-wind"></i></i></span>
+                        {% endif %}
+                        {% if center.feature.wifi %}
+                            <span data-toggle="tooltip" title="Wifi" class="roundedIcon text-center"><i class="fas fa-wifi"></i></span>
+                        {% endif %}
+                        {% if center.feature.music %}
+                            <span data-toggle="tooltip" title="Music" class="roundedIcon text-center"><i class="fas fa-music"></i></span>
+                        {% endif %}
+                        {% if center.feature.disinfect %}
+                            <span data-toggle="tooltip" title="Disinfectant" class="roundedIcon text-center"><i class="fas fa-pump-soap"></i></span>
+                        {% endif %}
+                        {% if center.feature.parking %}
+                            <span data-toggle="tooltip" title="Free Parking Available" class="roundedIcon text-center"><i class="fas fa-parking"></i></span>
+                        {% endif %}
+                        {% if center.feature.organic %}
+                            <span data-toggle="tooltip" title="Natural / Organic Ingredients" class="roundedIcon text-center"><i class="fas fa-leaf"></i></span>
+                        {% endif %}
+                        {% if center.feature.safety %}
+                            <span data-toggle="tooltip" title="Safety Standards" class="roundedIcon text-center"><i class="fas fa-hard-hat"></i></span>
+                        {% endif %}
+                    </div>
+
+                </div>
+                {% if center.open_time and center.close_time %}
+                    <div class="col-12">
+                        <div style="font-size: 12px;"class="mt-1 border d-flex justify-content-between p-1 font-weight-bold">
+                            <span >Open at {{ center.open_time.strftime('%I:%M %p') }} </span> 
+                            <span >Closes At {{ center.close_time.strftime('%I:%M %p') }}</span>
+                        </div>
+                    </div>
+                {% endif%}
+                {% if center.services[0] %}
+                <div class="col-12">
+
+                        <div  style="font-size: 13px;" class="mt-2 row">
+                            <div class="col-6  d-flex align-items-center justify-content-start" onclick="window.location.href='/booking/{{ center.id }}';">
+                                <span>{{ center.services[0].service if center.services[0].service }}</span>
+                            </div>
+                            <!-- <div class="col-3 border">
+                                <span>{{ service.subcategory }}</span>
+                            </div> -->
+                            <div class="col-3  d-flex align-items-center justify-content-end" onclick="window.location.href='/booking/{{ center.id }}';">
+                                <span>Rs.{{ center.services[0].prices }}</span>
+                            </div>
+                            <div class="col-md-3 col-12   text-md-right text-center">
+                                <a type="button" class="btn btn-sm btn-primary" href="/booking/{{ center.id }}">Book</a>
+                            </div>
+                        </div>
+                
+                </div>
+                {% endif %}
+                {% if center.services[1] %}
+                <div class="col-12">
+                        
+                        <div  style="font-size: 13px;" class="mt-2 row">
+                            <div class="col-6  d-flex align-items-center justify-content-start" onclick="window.location.href='/booking/{{ center.id }}';">
+                                <span>{{ center.services[1].service if center.services[1].service }}</span>
+                            </div>
+                            <!-- <div class="col-3 border">
+                                <span>{{ service.subcategory }}</span>
+                            </div> -->
+                            <div class="col-3  d-flex align-items-center justify-content-end" onclick="window.location.href='/booking/{{ center.id }}';">
+                                <span>Rs.{{ center.services[1].prices }}</span>
+                            </div>
+                            <div class="col-md-3 col-12   text-md-right text-center">
+                                <a type="button" class="btn btn-sm btn-primary" href="/booking/{{ center.id }}">Book</a>
+                            </div>
+                        </div>
+                
+                </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+{% endfor %}

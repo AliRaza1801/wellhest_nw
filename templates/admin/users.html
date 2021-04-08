@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %} Vendors {% endblock %}
+{% block extrahead %}
+<style>
+.table a{
+    color: blue !important;
+}
+</style>
+{% endblock %}
+{% block body %}
+<table class="table">
+    {% for user in users %}
+    <tr>
+        <td>
+            <span>{{ user.name }}</span>
+        </td>
+        <td>
+            <span>{{ user.email }}</span>
+        </td>
+        <td>
+            {% if user.is_admin %}
+                <span>Admin <a href="{{ url_for('admin_status', u_id=user.id) }}">Unset</a></span>
+            {% else %}
+                <span>Not Admin <a href="{{ url_for('admin_status', u_id=user.id) }}">Set as Admin</a></span>
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('set_password', u_id=user.id) }}">Change Password</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

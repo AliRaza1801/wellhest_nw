@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %} Vendors {% endblock %}
+{% block extrahead %}
+<style>
+.table .link{
+    color: blue !important;
+}
+</style>
+{% endblock %}
+{% block body %}
+<table class="table">
+    {% for merchant in merchants %}
+    <tr>
+        <td>
+            <a class="link" href="{{ url_for('update_vendor', v_id=merchant.id) }}">{{ merchant.business_name }}</a>
+        </td>
+        <td>
+            <a class="link" href="create-service/{{ merchant.id }}">Create Booking</a>
+        </td>
+        <td>
+            {% if merchant.updated %}
+                <span>Updated <a class="link" href="{{ url_for('update_vendor_status', v_id=merchant.id) }}">Allow Update</a></span>
+            {% else %}
+                <span>Not Updated <a class="link" href="{{ url_for('update_vendor_status', v_id=merchant.id) }}">Set to Updated</a></span>
+            {% endif %}
+        </td>
+        <td>
+            <a class="btn btn-danger" href="{{ url_for('delete_business', v_id=merchant.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

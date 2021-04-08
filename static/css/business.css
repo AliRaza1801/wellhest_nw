@@ -1,0 +1,367 @@
+
+*{margin:0;padding: 0;box-sizing: border-box;}
+header{
+  height:110px;
+}
+.navigation{
+    background-color:#b33939;
+    
+    padding-top:20px;
+    padding-bottom:20px;
+    position: absolute;
+    top:0;
+    width:100%;
+    z-index:1;
+    box-sizing: border-box;
+    transition: .5s;
+  }
+  .navigation.darkred{
+
+    position:fixed;
+    
+  }
+.navbar-logoBusiness{
+    padding-left:10%;
+    font-family:Arial;
+    font-size:30px;
+    font-weight:bold;
+    float: left;
+    color:#fff; 
+}
+.navbar-right{
+    float: right;
+    padding-right: 10%;
+  }
+  .navbar-right a{
+    text-decoration:none;
+    padding:10px;
+    color: #fff;
+    font-weight:500;
+  }
+  .navbar-logoBusiness:hover{
+    color: #ecf0f1;
+    text-decoration: none;
+  }
+  .brandHeading{
+    font-size:2rem;
+  }
+  .subText{
+    font-size: 20px;
+  }
+  #userIcon{
+    padding: 10px;
+  }
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-greeting{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.form-button{
+    text-align: right;
+}
+.form-card{
+    width: 50rem;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+
+  background-color: black;
+  background-image: none;
+  padding: 20px;
+  
+}
+
+
+.gradient-border {
+    --border-width: 4px;
+  
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Lato, sans-serif;
+ 
+    text-transform: uppercase;
+    color: white;
+    
+    border-radius: var(--border-width);
+}
+    ::after {
+      position: absolute;
+      content: "";
+      top: calc(-1 * var(--border-width));
+      left: calc(-1 * var(--border-width));
+      z-index: -1;
+      width: calc(100% + var(--border-width) * 2);
+      height: calc(100% + var(--border-width) * 2);
+      background: linear-gradient(
+        60deg,
+        hsl(224, 85%, 66%),
+        hsl(269, 85%, 66%),
+        hsl(314, 85%, 66%),
+        hsl(359, 85%, 66%),
+        hsl(44, 85%, 66%),
+        hsl(89, 85%, 66%),
+        hsl(134, 85%, 66%),
+        hsl(179, 85%, 66%)
+      );
+      background-size: 300% 300%;
+      background-position: 0 50%;
+      border-radius: calc(2 * var(--border-width));
+      animation: moveGradient 4s alternate infinite;
+    }
+  
+  
+  @keyframes moveGradient {
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  .footer{
+    background-color: #b33939;
+    height: auto;
+    margin-top: 30px;
+  
+  }
+  
+  
+  .bottom-menu{
+    height: auto;
+    display: flex;
+    align-items: center;
+  
+  
+  }
+  .bottom-menu ul{
+    list-style-type:none ;
+  }
+  .bottom-menu ul li{
+    display: inline;
+    padding-right: 2rem;
+  }
+  .bottom-menu ul li a{
+   
+    color: ghostwhite;
+    font-size: 15px;
+  }
+  .bottom-menu ul li a:hover{
+  
+    color: #ee826f;
+    text-decoration: none;
+    
+  }
+  .bottom-logo{
+    color: white;
+  }
+  #copyRight{
+    color: white;
+  }
+  .app-download-icon{
+    text-align: center;
+    
+    height: auto;
+    margin-top: 1rem;
+  
+  }
+  .app-download-icon a:hover{
+    opacity: 0.6;
+  }
+  .socialIconsDiv{
+  
+    height: auto;
+    text-align: right;
+    
+  }
+  .socialIconsDiv .fab{
+    padding:15px;
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+    margin-left: 10px;
+    font-size: larger;
+  }
+  .socialIconsDiv .fab:hover{
+    background-color: #b33939;
+  }
+  
+  .fa-facebook-f {
+    background: rgb(61, 77, 172);
+  }
+  
+  .fa-instagram {
+    background: #e05a0c;
+  }
+  .fa-twitter {
+    background: #079ac7;
+  }
+  .fa-pinterest{
+    background: red;
+  }
+  .fa-youtube{
+    background: #e00b1d;
+  }
+  #downloadText{
+    text-align: center;
+    margin-left: 3rem;
+  }
+ 
+.errorMsg{
+  color: red;
+  font-size: 12px;
+}
+/* Login Modal */
+
+.modal-header button:focus{
+  outline: none;
+}
+/* End Login Modal */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+@media only screen and (max-width: 765px) {
+  .form-card{
+    width: auto;
+  }
+  .form-button{
+    text-align: center;
+  }
+
+  .bottom-menu ul li{
+    display: block;
+    text-align: center;
+    margin-left: 2rem;
+  
+  
+  }
+  #copyRight{
+    margin-top: 3rem;
+    width: 100%;
+    text-align: center;
+  }
+  .bottom-logo{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+  }
+  .bottom-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    height: auto;
+  }
+  .socialIconsDiv{
+
+    height: 10vh;
+    text-align: center;
+    
+  }
+  #downloadText{
+    text-align: center;
+
+    margin-left: 0;
+  }
+  .app-download-icon{
+    text-align: center;
+    margin-left: 0;
+  }
+}
+
+
+.centered-text{
+  text-align: center;
+  min-height: 38px;
+}
+
+.partner-card{
+  margin-bottom: 2%;
+  padding: 2%;
+}
+
+.partner-card-body{
+  min-height: 295px;
+}
+
+.partner-image{
+  height: 70%;
+  width: 70%;
+}
+
+.partner-image-wrap{
+  text-align: center;
+}
+
+
+
+.btnColor{
+  background-color: #b33939 !important;
+  color: white!important;
+}
+.btnColor:hover{
+  color: wheat !important;
+ 
+}
+.btn-outline-danger{
+  color: #b33939 !important;
+  background-color: transparent !important;
+  border: 2px solid #b33939 !important;
+}
+.md-form input[type="text"]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #b33939!important;
+  box-shadow: 0 1px 0 0 #b33939 !important;
+}
+.md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label{
+  color: #b33939 !important;
+}
+.md-form input[type="email"]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #b33939!important;
+  box-shadow: 0 1px 0 0 #b33939 !important;
+}
+
+.md-form input[type="email"]:not(.browser-default):focus:not([readonly])+label{
+  color: #b33939 !important;
+}
+
+
+.md-form input[type="number"]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #b33939!important;
+  box-shadow: 0 1px 0 0 #b33939 !important;
+}
+
+.md-form input[type="number"]:not(.browser-default):focus:not([readonly])+label{
+  color: #b33939 !important;
+}
+
+.md-form input[type="password"]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #b33939!important;
+  box-shadow: 0 1px 0 0 #b33939 !important;
+}
+.md-form input[type="password"]:not(.browser-default):focus:not([readonly])+label{
+  color: #b33939 !important;
+}

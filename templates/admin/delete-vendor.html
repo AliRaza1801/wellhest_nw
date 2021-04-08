@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% block body %}
+<div class="jumbotron">
+  <h1 class="display-4">Are You Sure!</h1>
+  <p class="lead">You are about to delete all of the related to the following business user.
+      Never attempt this with production data.</p>
+  <table class="table">
+    <tr>
+        <td>
+            <span>{{ merchant.business_name }}</span>
+        </td>
+        <td>
+            <span>{{ merchant.user.name }}</span>
+        </td>
+        <td>
+            <span>{{ merchant.user.email }}</span>
+        </td>
+        <td>
+            <span>{{ merchant.address }}</span>
+        </td>
+    </tr>
+</table>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{{ url_for('list_vendors') }}" role="button">Go Back</a>
+    <form method="post">
+        <button type="submit" class="btn btn-danger btn-lg" role="button">Delete</button>
+    </form>
+  </p>
+</div>
+{% endblock %}

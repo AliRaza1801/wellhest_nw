@@ -1,0 +1,36 @@
+<div class="container  myBookingsContainer">
+    <div class="py-3">
+        <h5>My Bookings</h5>
+    </div>
+    <div class="bookingsDiv">
+        {% for booking in cart_items %}
+        <div onclick="selectBooking(event)" class="selectBooking w-100 d-flex justify-content-between py-2 border-bottom">
+            <div>
+                <span>{{ booking.service.service }}</span>
+            </div>
+            <div>
+                <span>Rs {{ booking.service.prices }}</span>
+                <i class="far fa-times-circle"></i>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="w-100 mt-2">
+<!--        <div>-->
+<!--            <a href="#" style="color: #b33939;"><i class="fas fa-plus-circle mr-2"></i>Add more Service from the place</a>-->
+<!--        </div>-->
+    </div>
+    <div class="w-100  text-right">
+        <div class="py-3">
+            <span class="px-3">Order Total</span>
+            <span >Rs {{ total }}</span>
+        </div>
+        <div class="checkout" >
+            <form method="post" onsubmit="submitCheckout(event)">
+                <input type="hidden" name="time" value="{{ cart_items[0].booking_at.strftime('%I:%M %p') if cart_items[0].booking_at }}" required>
+                <input type="hidden" name="date" value="{{ cart_items[0].booking_at.strftime('%m/%d/%Y') if cart_items[0].booking_at }}" required>
+                <input type="submit" class="btn btn-primary btn-md " value="Confirm"/>
+            </form>
+        </div>
+    </div>
+</div>
